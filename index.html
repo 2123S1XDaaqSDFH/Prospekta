@@ -29,47 +29,30 @@
         
         /* Tipografías */
         .title-aggressive { font-family: 'Outfit', sans-serif; font-weight: 900; font-style: italic; }
-        .text-gradient { background: linear-gradient(90deg, #ffffff, #a0a0a0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
         /* Utilidades Glass y Glow */
         .glass-dark { background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .glass-light { background: #ffffff; border: 1px solid #f0f0f0; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
         
         .card-glow { transition: all 0.4s ease; position: relative; overflow: hidden; }
-        .card-glow::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,106,0,0.15) 0%, transparent 70%);
-            opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
-        }
-        .card-glow:hover::before { opacity: 1; }
         .card-glow:hover { transform: translateY(-5px); border-color: rgba(255,106,0,0.3); box-shadow: 0 10px 30px rgba(255,106,0,0.1); }
 
         /* Custom Cursor */
         .custom-cursor { position: fixed; top: 0; left: 0; width: var(--cursor-size); height: var(--cursor-size); background: #ff6a00; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s; }
         .custom-cursor-follower { position: fixed; top: 0; left: 0; width: 30px; height: 30px; border: 1px solid rgba(255, 106, 0, 0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: all 0.1s ease-out; }
-        body:hover .custom-cursor, body:hover .custom-cursor-follower { opacity: 1; }
-        a:hover ~ .custom-cursor, button:hover ~ .custom-cursor { width: 40px; height: 40px; background: rgba(255, 106, 0, 0.2); mix-blend-mode: exclusion; }
 
         /* Botón WhatsApp Flotante */
-        .wa-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #ff6a00; color: white; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 0px 0px 20px rgba(255, 106, 0, 0.5); z-index: 1000; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; animation: pulse-orange 2s infinite; }
-        .wa-float:hover { transform: scale(1.1); background-color: #e65c00; }
+        .wa-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #ff6a00; color: white; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 0px 0px 20px rgba(255, 106, 0, 0.5); z-index: 1000; display: flex; align-items: center; justify-content: center; animation: pulse-orange 2s infinite; }
         @keyframes pulse-orange {
             0% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0.7); }
             70% { box-shadow: 0 0 0 15px rgba(255, 106, 0, 0); }
             100% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0); }
         }
 
-        /* Hero Background Image */
+        /* Hero Background Image - Medellín Atardecer */
         .bg-hero {
-            background-image: linear-gradient(to bottom, rgba(5,5,5,0.7), rgba(5,5,5,1)), url('https://images.unsplash.com/photo-1594119614457-36e4f3a38615?q=80&w=2070&auto=format&fit=crop');
+            background-image: linear-gradient(to bottom, rgba(5,5,5,0.7), rgba(5,5,5,1)), url('MEDELLIN_ATARDECER.jpg');
             background-size: cover; background-position: center; background-attachment: fixed;
         }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: #ff6a00; }
         
         #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
     </style>
@@ -83,18 +66,17 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <nav class="fixed w-full z-50 glass-dark py-4 transition-all duration-300" id="navbar">
+    <nav class="fixed w-full z-50 glass-dark py-4" id="navbar">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <a href="#" class="flex items-center gap-2 z-10">
-                <div class="w-8 h-8 bg-brand rounded flex items-center justify-center font-bold text-dark text-xl title-aggressive">P</div>
+                <img src="PROSPEKTA.png" alt="Prospekta Hub Logo" class="h-10 w-auto">
                 <span class="title-aggressive text-xl tracking-wider uppercase">Prospekta Hub<sup class="text-xs">®</sup></span>
             </a>
             <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-300 z-10">
-                <a href="#servicios" class="hover:text-brand transition-colors">Servicios</a>
                 <a href="#vacantes" class="hover:text-brand transition-colors">Vacantes</a>
-                <a href="#testimonios" class="hover:text-brand transition-colors">Impacto</a>
+                <a href="mailto:prospektahub@gmail.com" class="hover:text-brand transition-colors">Enviar CV</a>
             </div>
-            <a href="https://wa.me/573184499437" target="_blank" class="bg-brand text-white px-6 py-2.5 rounded-full font-bold text-sm tracking-wide uppercase hover:bg-brandHover transition-all duration-300 transform hover:scale-105 shadow-[0_0_15px_rgba(255,106,0,0.4)] z-10">
+            <a href="https://wa.me/573184499437" target="_blank" class="bg-brand text-white px-6 py-2.5 rounded-full font-bold text-sm tracking-wide uppercase shadow-[0_0_15px_rgba(255,106,0,0.4)] z-10 hover:scale-105 transition-transform">
                 WhatsApp
             </a>
         </div>
@@ -104,258 +86,90 @@
         <div id="particles-js"></div>
         <div class="max-w-7xl mx-auto w-full relative z-10">
             <div class="max-w-4xl gsap-hero">
-                <h1 class="title-aggressive text-7xl md:text-8xl lg:text-[110px] leading-[0.85] uppercase tracking-tighter mb-4">
+                <h1 class="title-aggressive text-7xl md:text-8xl lg:text-[110px] leading-[0.85] uppercase tracking-tighter mb-4 text-shadow-lg">
                     <span class="block text-white">Operaciones</span>
                     <span class="block text-brand">Alto Nivel.</span>
                 </h1>
-                <div class="flex items-stretch gap-4 mt-8">
-                    <div class="w-1 bg-brand rounded-full"></div>
-                    <p class="text-gray-300 text-lg md:text-2xl font-light max-w-2xl leading-relaxed">
+                <div class="flex items-stretch gap-4 mt-8 border-l-4 border-brand pl-6">
+                    <p class="text-gray-100 text-lg md:text-2xl font-medium max-w-2xl leading-relaxed text-shadow">
                         Infraestructura táctica de ventas y prospección<br/>avanzada en Medellín.
                     </p>
                 </div>
-                <div class="mt-12 flex gap-4">
+                <div class="mt-12 flex flex-wrap gap-4 relative z-20">
                     <a href="#vacantes" class="bg-white text-dark px-8 py-4 rounded-full font-bold uppercase tracking-wide hover:bg-gray-200 transition-colors">
-                        Ver Vacantes
+                        Postularse Ahora
                     </a>
-                    <a href="#contacto" class="border border-white/20 text-white px-8 py-4 rounded-full font-bold uppercase tracking-wide hover:bg-white/10 transition-colors glass-dark">
-                        Contactar Equipo
+                    <a href="mailto:prospektahub@gmail.com" class="border border-white/40 text-white px-8 py-4 rounded-full font-bold uppercase tracking-wide hover:bg-white/10 transition-colors glass-dark">
+                        Enviar Correo
                     </a>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-dark to-transparent"></div>
     </header>
-
-    <div class="border-y border-white/10 glass-dark py-8 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
-            <div class="gsap-stat">
-                <h3 class="title-aggressive text-4xl text-brand mb-1">24/7</h3>
-                <p class="text-xs text-gray-400 uppercase tracking-widest">Operación Continua</p>
-            </div>
-            <div class="gsap-stat">
-                <h3 class="title-aggressive text-4xl text-white mb-1">C1/C2</h3>
-                <p class="text-xs text-gray-400 uppercase tracking-widest">Nivel Bilingüe</p>
-            </div>
-            <div class="gsap-stat">
-                <h3 class="title-aggressive text-4xl text-white mb-1">100%</h3>
-                <p class="text-xs text-gray-400 uppercase tracking-widest">Ejecución Táctica</p>
-            </div>
-            <div class="gsap-stat">
-                <h3 class="title-aggressive text-4xl text-brand mb-1">MED</h3>
-                <p class="text-xs text-gray-400 uppercase tracking-widest">Base de Operaciones</p>
-            </div>
-        </div>
-    </div>
-
-    <section id="servicios" class="py-32 px-6 relative z-10">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gsap-fade-up">
-                <div>
-                    <h2 class="title-aggressive text-5xl md:text-6xl mb-4 text-white">NUESTROS <span class="text-brand">SERVICIOS</span></h2>
-                    <p class="text-gray-400 max-w-xl text-lg">No somos un call center tradicional. Somos un HUB de rendimiento diseñado para escalar la facturación de tu empresa.</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-dark card-glow rounded-[30px] p-10 gsap-fade-up">
-                    <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center text-brand text-2xl mb-6">
-                        <i class="fa-solid fa-crosshairs"></i>
-                    </div>
-                    <h3 class="title-aggressive text-2xl mb-4">Prospección Outbound</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Identificación y cualificación agresiva de leads B2B/B2C. Llenamos tu agenda con prospectos que tienen el capital y la urgencia.</p>
-                    <ul class="text-sm text-gray-300 space-y-2 font-medium">
-                        <li><i class="fa-solid fa-check text-brand mr-2"></i> Cold Calling Táctico</li>
-                        <li><i class="fa-solid fa-check text-brand mr-2"></i> Calificación BANT/MEDDIC</li>
-                    </ul>
-                </div>
-
-                <div class="glass-dark card-glow border-brand/30 rounded-[30px] p-10 relative overflow-hidden gsap-fade-up" style="transition-delay: 0.1s;">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand/20 blur-[50px]"></div>
-                    <div class="w-14 h-14 bg-brand rounded-2xl flex items-center justify-center text-white text-2xl mb-6">
-                        <i class="fa-solid fa-bolt"></i>
-                    </div>
-                    <h3 class="title-aggressive text-2xl mb-4">Cierres High-Ticket</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Closers entrenados en psicología de ventas. Tomamos tus leads tibios y los convertimos en contratos firmados de alto valor.</p>
-                    <ul class="text-sm text-gray-300 space-y-2 font-medium">
-                        <li><i class="fa-solid fa-check text-brand mr-2"></i> Manejo de objeciones nivel experto</li>
-                        <li><i class="fa-solid fa-check text-brand mr-2"></i> Aumento radical de % de conversión</li>
-                    </ul>
-                </div>
-
-                <div class="glass-dark card-glow rounded-[30px] p-10 gsap-fade-up" style="transition-delay: 0.2s;">
-                    <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center text-brand text-2xl mb-6">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h3 class="title-aggressive text-2xl mb-4">Retención y Ops</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Soporte bilingüe especializado para evitar el churn. Blindamos tu cartera de clientes con un servicio al cliente resolutivo y veloz.</p>
-                    <ul class="text-sm text-gray-300 space-y-2 font-medium">
-                        <li><i class="fa-solid fa-check text-brand mr-2"></i> Disminución de cancelaciones</li>
-                        <li><i class="fa-solid fa-check text-brand mr-2"></i> Fidelización a largo plazo</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section id="vacantes" class="py-24 px-6 bg-[#0a0a0a] relative z-10 border-y border-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 gsap-fade-up">
-                <h2 class="title-aggressive text-4xl md:text-5xl mb-4">ÚNETE AL <span class="text-brand">HUB</span></h2>
-                <p class="text-gray-500">Posiciones abiertas para talento élite en Medellín.</p>
+                <h2 class="title-aggressive text-4xl md:text-5xl mb-4 uppercase">Únete al <span class="text-brand">Hub</span></h2>
+                <p class="text-gray-500">Haz clic en tu perfil para postularte vía correo o WhatsApp a <span class="text-white">prospektahub@gmail.com</span>.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[300px] border border-white/10 hover:border-white/30 transition-colors gsap-fade-up">
-                    <div>
-                        <p class="text-gray-300 text-lg leading-snug mb-8 font-medium">
-                            Inglés C1 / Español. Medellín.<br/>Trabajo presencial.
-                        </p>
-                    </div>
-                    <a href="https://wa.me/573184499437?text=Me%20postulo%20a%20la%20vacante%20Inglés%20C1" class="w-full bg-white text-dark font-bold text-sm tracking-widest uppercase py-4 rounded-xl text-center hover:bg-gray-200 transition-colors">
-                        Postularse Ahora
-                    </a>
-                </div>
-
-                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[300px] border border-brand/50 shadow-[0_0_30px_rgba(255,106,0,0.1)] hover:border-brand transition-colors relative overflow-hidden gsap-fade-up" style="transition-delay: 0.1s;">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand to-transparent opacity-50"></div>
-                    <div>
-                        <p class="text-gray-300 text-lg leading-snug mb-8 font-medium">
-                            Nivel Senior. Especialista en cierres<br/>corporativos High Ticket.
-                        </p>
-                    </div>
-                    <a href="https://wa.me/573184499437?text=Me%20postulo%20a%20la%20vacante%20Senior%20Closer" class="w-full bg-brand text-white font-bold text-sm tracking-widest uppercase py-4 rounded-xl text-center shadow-[0_0_20px_rgba(255,106,0,0.3)] hover:bg-brandHover transition-colors">
-                        Postularse Ahora
-                    </a>
-                </div>
-
-                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[300px] border border-white/10 hover:border-white/30 transition-colors gsap-fade-up" style="transition-delay: 0.2s;">
-                    <div>
-                        <p class="text-gray-300 text-lg leading-snug mb-8 font-medium">
-                            Bilingüe & Español. High<br/>Performance Ops Medellín.
-                        </p>
-                    </div>
-                    <a href="https://wa.me/573184499437?text=Me%20postulo%20a%20la%20vacante%20Ops" class="w-full bg-white text-dark font-bold text-sm tracking-widest uppercase py-4 rounded-xl text-center hover:bg-gray-200 transition-colors">
-                        Postularse Ahora
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonios" class="py-32 px-6 bg-[#f8f9fa] text-dark relative z-10">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 gsap-fade-up">
-                <h2 class="title-aggressive text-4xl md:text-5xl mb-4 text-dark">LO QUE DICEN <span class="text-brand">DE NOSOTROS</span></h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
-                <div class="glass-light rounded-[30px] p-8 flex flex-col justify-between min-h-[250px] transform hover:-translate-y-2 transition-transform duration-300 gsap-fade-up">
-                    <p class="text-[#2c3e50] text-xl font-bold italic mb-8 leading-tight">
-                        "Transparencia y ejecución implacable en Medellín."
+                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[320px] border border-white/10 hover:border-white/30 transition-all gsap-fade-up">
+                    <p class="text-gray-300 text-lg leading-snug font-medium">
+                        Inglés C1 / Español. Medellín.<br/>Trabajo presencial.
                     </p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://i.pravatar.cc/150?img=11" alt="Juan Gómez R." class="w-12 h-12 rounded-xl border border-gray-200 object-cover">
-                        <div>
-                            <h4 class="font-bold text-dark text-sm">Juan Gómez R.</h4>
-                            <p class="text-brand text-[10px] font-black tracking-wider uppercase">OPERACIONES - ARGOS</p>
-                        </div>
+                    <div class="flex flex-col gap-3">
+                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Inglés C1" class="w-full bg-white text-dark font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-gray-200 transition-colors">
+                            <i class="fa-solid fa-envelope mr-2"></i> Por Correo
+                        </a>
+                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Inglés%20C1" target="_blank" class="w-full border border-white/10 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-white/5 transition-colors">
+                            <i class="fa-brands fa-whatsapp mr-2"></i> Por WhatsApp
+                        </a>
                     </div>
                 </div>
-                
-                <div class="glass-light rounded-[30px] p-8 flex flex-col justify-between min-h-[250px] transform hover:-translate-y-2 transition-transform duration-300 gsap-fade-up" style="transition-delay: 0.1s;">
-                    <p class="text-[#2c3e50] text-xl font-bold italic mb-8 leading-tight">
-                        "El HUB cambió nuestras métricas de retención en menos de dos meses."
+
+                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[320px] border border-brand/50 shadow-[0_0_30px_rgba(255,106,0,0.1)] hover:border-brand transition-all gsap-fade-up">
+                    <p class="text-gray-300 text-lg leading-snug font-medium">
+                        Nivel Senior. Especialista en cierres<br/>corporativos High Ticket.
                     </p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://i.pravatar.cc/150?img=5" alt="Maria C." class="w-12 h-12 rounded-xl border border-gray-200 object-cover">
-                        <div>
-                            <h4 class="font-bold text-dark text-sm">María C.</h4>
-                            <p class="text-brand text-[10px] font-black tracking-wider uppercase">VP VENTAS - TECHLOG</p>
-                        </div>
+                    <div class="flex flex-col gap-3">
+                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Senior Closer" class="w-full bg-brand text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center shadow-[0_0_20px_rgba(255,106,0,0.3)] hover:bg-brandHover transition-colors">
+                            <i class="fa-solid fa-envelope mr-2"></i> Por Correo
+                        </a>
+                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Senior%20Closer" target="_blank" class="w-full border border-brand/30 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-brand/10 transition-colors">
+                            <i class="fa-brands fa-whatsapp mr-2"></i> Por WhatsApp
+                        </a>
                     </div>
                 </div>
 
-                <div class="glass-light rounded-[30px] p-8 flex flex-col justify-between min-h-[250px] transform hover:-translate-y-2 transition-transform duration-300 hidden lg:flex gsap-fade-up" style="transition-delay: 0.2s;">
-                    <p class="text-[#2c3e50] text-xl font-bold italic mb-8 leading-tight">
-                        "Encontrar talento bilingüe con instinto comercial real es difícil. Ellos lo tienen."
+                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[320px] border border-white/10 hover:border-white/30 transition-all gsap-fade-up">
+                    <p class="text-gray-300 text-lg leading-snug font-medium">
+                        Bilingüe & Español. High<br/>Performance Ops Medellín.
                     </p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://i.pravatar.cc/150?img=68" alt="Carlos M." class="w-12 h-12 rounded-xl border border-gray-200 object-cover">
-                        <div>
-                            <h4 class="font-bold text-dark text-sm">Carlos M.</h4>
-                            <p class="text-brand text-[10px] font-black tracking-wider uppercase">CEO - GLOBAL FIN</p>
-                        </div>
+                    <div class="flex flex-col gap-3">
+                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Bilingüe Ops" class="w-full bg-white text-dark font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-gray-200 transition-colors">
+                            <i class="fa-solid fa-envelope mr-2"></i> Por Correo
+                        </a>
+                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Bilingüe%20Ops" target="_blank" class="w-full border border-white/10 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-white/5 transition-colors">
+                            <i class="fa-brands fa-whatsapp mr-2"></i> Por WhatsApp
+                        </a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacto" class="py-32 px-6 relative z-10 border-t border-white/5">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div class="gsap-fade-up">
-                <h2 class="title-aggressive text-5xl md:text-6xl mb-6">INICIA LA <span class="text-brand">OPERACIÓN</span></h2>
-                <p class="text-gray-400 mb-10 text-lg">Déjanos tus datos o escríbenos directamente a WhatsApp. Nuestro equipo táctico responderá de inmediato.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4 text-gray-300 bg-white/5 p-4 rounded-2xl border border-white/10">
-                        <div class="w-12 h-12 bg-brand/20 rounded-xl flex items-center justify-center text-brand"><i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <p class="text-xs text-gray-500 uppercase font-bold tracking-wider">Sede Principal</p>
-                            <p class="font-medium">Medellín, Colombia</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4 text-gray-300 bg-white/5 p-4 rounded-2xl border border-white/10">
-                        <div class="w-12 h-12 bg-brand/20 rounded-xl flex items-center justify-center text-brand"><i class="fa-solid fa-envelope"></i></div>
-                        <div>
-                            <p class="text-xs text-gray-500 uppercase font-bold tracking-wider">Email Directo</p>
-                            <p class="font-medium">ops@prospektahub.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-dark p-8 md:p-10 rounded-[40px] gsap-fade-up" style="transition-delay: 0.2s;">
-                <form class="space-y-6" onsubmit="event.preventDefault(); window.open('https://wa.me/573184499437', '_blank');">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="text-xs text-gray-400 font-bold uppercase tracking-wider ml-2">Nombre Completo</label>
-                            <input type="text" required class="w-full bg-[#0a0a0a] border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-all" placeholder="Ej. Juan Pérez">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-xs text-gray-400 font-bold uppercase tracking-wider ml-2">Empresa</label>
-                            <input type="text" class="w-full bg-[#0a0a0a] border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-all" placeholder="Opcional">
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-xs text-gray-400 font-bold uppercase tracking-wider ml-2">Correo Electrónico</label>
-                        <input type="email" required class="w-full bg-[#0a0a0a] border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-all" placeholder="tu@correo.com">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-xs text-gray-400 font-bold uppercase tracking-wider ml-2">¿Cómo podemos ayudar?</label>
-                        <textarea required rows="4" class="w-full bg-[#0a0a0a] border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-all resize-none" placeholder="Describe tus necesidades de prospección o ventas..."></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-brand text-white font-bold text-sm tracking-widest uppercase py-5 rounded-2xl hover:bg-brandHover transition-all flex justify-center items-center gap-3">
-                        <span>Enviar Mensaje Táctico</span>
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </form>
             </div>
         </div>
     </section>
 
     <footer class="py-20 px-6 relative z-10 bg-[#020202] flex flex-col items-center justify-center border-t border-white/5">
-        <div class="mb-10 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-            <div class="w-12 h-12 border-2 border-brand text-brand flex items-center justify-center rounded-xl mx-auto mb-2 title-aggressive text-xl">P</div>
-            <p class="text-[10px] tracking-[0.2em] text-center font-bold">PROSPEKTA</p>
-        </div>
-        
-        <h2 class="title-aggressive text-4xl md:text-5xl text-center mb-16 uppercase italic">
+        <img src="PROSPEKTA.png" alt="Prospekta Hub Logo" class="h-16 w-auto mb-8 opacity-70 hover:opacity-100 transition-opacity">
+        <h2 class="title-aggressive text-4xl md:text-5xl text-center mb-8 uppercase italic">
             REVOLUCIONANDO LA PROSPECCIÓN<br/>
             <span class="text-white">DESDE <span class="text-brand">MEDELLÍN.</span></span>
         </h2>
-        
+        <div class="flex gap-6 mb-10 relative z-20">
+            <a href="https://wa.me/573184499437" target="_blank" class="text-gray-400 hover:text-brand text-2xl transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:prospektahub@gmail.com" class="text-gray-400 hover:text-brand text-2xl transition-colors"><i class="fa-solid fa-envelope"></i></a>
+        </div>
         <p class="text-[10px] tracking-[0.3em] text-gray-600 font-bold uppercase text-center">
             © 2026 PROSPEKTA HUB S.A.S. • TODOS LOS DERECHOS RESERVADOS
         </p>
@@ -364,78 +178,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
     <script>
-        // Custom Cursor Logic
         const cursor = document.querySelector('.custom-cursor');
         const cursorFollower = document.querySelector('.custom-cursor-follower');
-        
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(() => {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 80);
+            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+            setTimeout(() => { cursorFollower.style.left = e.clientX + 'px'; cursorFollower.style.top = e.clientY + 'px'; }, 80);
         });
 
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-[#050505]/90', 'shadow-lg', 'border-b', 'border-white/10');
-                nav.classList.remove('py-4');
-                nav.classList.add('py-2');
-            } else {
-                nav.classList.remove('bg-[#050505]/90', 'shadow-lg', 'border-b', 'border-white/10');
-                nav.classList.add('py-4');
-                nav.classList.remove('py-2');
-            }
-        });
-
-        // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
-
-        // Hero Load Animation
-        const tl = gsap.timeline();
-        tl.from(".gsap-hero h1 span", { y: 100, opacity: 0, duration: 1, stagger: 0.2, ease: "power4.out", delay: 0.2 })
-          .from(".gsap-hero p", { opacity: 0, x: -20, duration: 0.8 }, "-=0.5")
-          .from(".gsap-hero a", { opacity: 0, y: 20, duration: 0.5, stagger: 0.1 }, "-=0.3")
-          .from(".gsap-stat", { opacity: 0, y: 30, duration: 0.6, stagger: 0.1, ease: "back.out(1.7)" }, "-=0.2");
-
-        // Scroll Animations
-        gsap.utils.toArray('.gsap-fade-up').forEach(element => {
-            gsap.from(element, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                },
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                ease: "power3.out"
-            });
+        gsap.from(".gsap-hero", { y: 50, opacity: 0, duration: 1.2, ease: "power4.out" });
+        gsap.utils.toArray('.gsap-fade-up').forEach(el => {
+            gsap.from(el, { scrollTrigger: { trigger: el, start: "top 90%" }, y: 40, opacity: 0, duration: 1 });
         });
 
-        // Particles JS Config (Efecto tecnológico sutil en el hero)
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 40 },
                 "color": { "value": "#ff6a00" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.3, "random": true },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.1, "width": 1 },
-                "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false }, "resize": true },
-                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } }
-            },
-            "retina_detect": true
+                "opacity": { "value": 0.3 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.1 },
+                "move": { "enable": true, "speed": 1 }
+            }
         });
     </script>
 </body>
