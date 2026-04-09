@@ -3,100 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prospekta Hub | Operaciones Alto Nivel</title>
+    <title>Prospekta Hub | Operaciones de Cobertura Total</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { dark: '#050505', brand: '#ff6a00' },
-                    fontFamily: { title: ['Outfit', 'sans-serif'], body: ['"Plus Jakarta Sans"', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@900&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 
     <style>
-        body { background-color: #050505; color: #ffffff; cursor: default; }
+        :root { --brand: #ff6a00; }
+        body { background-color: #050505; color: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
         .title-aggressive { font-family: 'Outfit', sans-serif; font-weight: 900; font-style: italic; }
-        .glass-dark { background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
         
-        /* CORRECCIÓN DE IMAGEN DE FONDO */
-        #hero-bg-container {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
-            /* Usamos %20 para representar el espacio en el nombre del archivo de tu GitHub */
-            background-image: linear-gradient(to bottom, rgba(5,5,5,0.6), #050505), url('image%20medellin.png'); 
+        /* Glassmorphism mejorado */
+        .glass { background: rgba(15, 15, 15, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
+        .glass-premium { background: linear-gradient(135deg, rgba(255,106,0,0.05) 0%, rgba(10,10,10,0.8) 100%); border: 1px solid rgba(255,106,0,0.2); }
+
+        /* FIX DEFINITIVO PARA IMAGEN DE FONDO */
+        .hero-main {
+            position: relative;
+            min-height: 100vh;
+            background-image: linear-gradient(to bottom, rgba(5,5,5,0.2) 0%, #050505 90%), url('image%20medellin.png');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
         }
+
+        .service-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--brand); box-shadow: 0 20px 40px rgba(255,106,0,0.1); }
+        
+        /* Animación sutil de fondo */
+        @keyframes float { 0% { opacity: 0.3; } 50% { opacity: 0.6; } 100% { opacity: 0.3; } }
+        .glow-bg { position: absolute; width: 400px; height: 400px; background: var(--brand); filter: blur(150px); border-radius: 50%; opacity: 0.1; z-index: 0; animation: float 6s infinite ease-in-out; }
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="fixed w-full z-50 glass-dark py-4">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <img src="image_62e723.png.png" alt="Logo" class="h-10 w-auto">
-                <span class="title-aggressive text-xl tracking-wider uppercase">Prospekta Hub</span>
+    <nav class="fixed w-full z-[100] glass py-5 px-6 border-b border-white/5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <img src="image_62e723.png.png" alt="Prospekta Logo" class="h-10 w-auto object-contain">
+                <div class="h-6 w-[1px] bg-white/20 hidden md:block"></div>
+                <span class="title-aggressive text-2xl uppercase tracking-tighter">Prospekta Hub</span>
             </div>
-            <a href="https://wa.me/573184499437" target="_blank" class="bg-brand text-white px-6 py-2 rounded-full font-bold text-sm uppercase">WhatsApp</a>
+            <div class="hidden lg:flex gap-10 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
+                <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
+                <a href="#infraestructura" class="hover:text-white transition-colors">Infraestructura</a>
+                <a href="#vacantes" class="hover:text-white transition-colors">Carrera</a>
+            </div>
+            <a href="https://wa.me/573184499437" target="_blank" class="bg-[#ff6a00] hover:bg-[#e65c00] text-white px-8 py-2.5 rounded-full font-bold text-xs uppercase transition-all shadow-lg shadow-orange-950/40">
+                Contactar Ahora
+            </a>
         </div>
     </nav>
 
-    <header class="relative min-h-screen flex items-center px-6 overflow-hidden">
-        <div id="hero-bg-container"></div>
-        <div class="max-w-7xl mx-auto w-full relative z-10">
-            <h1 class="title-aggressive text-6xl md:text-8xl uppercase leading-none">
-                <span class="block text-white">Operaciones</span>
-                <span class="block text-brand">Alto Nivel.</span>
+    <section class="hero-main">
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="inline-block px-4 py-1.5 border border-[#ff6a00]/30 rounded-full bg-[#ff6a00]/10 text-[#ff6a00] text-[10px] font-bold uppercase tracking-widest mb-6">
+                Medellín HQ • Operaciones Globales
+            </div>
+            <h1 class="title-aggressive text-6xl md:text-8xl lg:text-[120px] leading-[0.8] uppercase mb-8">
+                <span class="text-white">Full Service</span><br>
+                <span class="text-[#ff6a00]">BPO Hub.</span>
             </h1>
-            <p class="text-gray-300 text-lg mt-6 border-l-4 border-brand pl-4 max-w-xl">
-                Infraestructura táctica de ventas y prospección avanzada en Medellín.
+            <p class="max-w-2xl text-lg md:text-xl text-gray-300 border-l-4 border-[#ff6a00] pl-8 font-medium leading-relaxed">
+                Transformamos tu modelo de negocio con infraestructura táctica. Chat 24/7, soporte técnico y ventas de alto impacto. 
+                <span class="block mt-2 text-white font-bold">Ustedes traen la marca, nosotros ponemos todo lo demás.</span>
             </p>
+            <div class="mt-12 flex flex-wrap gap-5">
+                <a href="#servicios" class="bg-white text-black px-10 py-4 rounded-2xl font-black uppercase text-xs hover:scale-105 transition-transform">Nuestros Servicios</a>
+                <a href="#vacantes" class="glass px-10 py-4 rounded-2xl font-black uppercase text-xs border border-white/10 hover:bg-white/5 transition-all">Ver Vacantes</a>
+            </div>
         </div>
-    </header>
+    </section>
 
-    <section id="vacantes" class="py-24 px-6 bg-[#050505]">
+    <section id="servicios" class="py-32 px-6 bg-[#050505] relative overflow-hidden">
+        <div class="glow-bg" style="top: 10%; right: -10%;"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
+                <div>
+                    <h2 class="title-aggressive text-5xl md:text-6xl uppercase italic">Servicios <span class="text-[#ff6a00]">Élite</span></h2>
+                    <p class="text-gray-500 font-bold uppercase tracking-[0.3em] text-xs mt-4">Soluciones End-to-End para compañías modernas</p>
+                </div>
+                <p class="text-gray-400 max-w-sm text-sm">Especializados en operaciones Outbound e Inbound con métricas de rendimiento en tiempo real.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass p-10 rounded-[40px] service-card">
+                    <div class="w-14 h-14 bg-[#ff6a00]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i class="fa-solid fa-gauge-high text-[#ff6a00] text-2xl"></i>
+                    </div>
+                    <h3 class="title-aggressive text-xl mb-4 uppercase">Ventas High-Ticket</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Cierres estratégicos para productos premium. No somos un call center común, somos cerradores.</p>
+                </div>
+
+                <div class="glass p-10 rounded-[40px] service-card">
+                    <div class="w-14 h-14 bg-[#ff6a00]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i class="fa-solid fa-comments text-[#ff6a00] text-2xl"></i>
+                    </div>
+                    <h3 class="title-aggressive text-xl mb-4 uppercase">Chat en Vivo 24/7</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Atención multicanal ininterrumpida. Tu negocio nunca duerme, nosotros tampoco.</p>
+                </div>
+
+                <div class="glass p-10 rounded-[40px] service-card">
+                    <div class="w-14 h-14 bg-[#ff6a00]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i class="fa-solid fa-screwdriver-wrench text-[#ff6a00] text-2xl"></i>
+                    </div>
+                    <h3 class="title-aggressive text-xl mb-4 uppercase">Soporte Técnico</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Resolución de Nivel 1 y 2 para empresas de tecnología y servicios digitales.</p>
+                </div>
+
+                <div class="glass p-10 rounded-[40px] service-card">
+                    <div class="w-14 h-14 bg-[#ff6a00]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i class="fa-solid fa-users-gear text-[#ff6a00] text-2xl"></i>
+                    </div>
+                    <h3 class="title-aggressive text-xl mb-4 uppercase">Fidelización</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Programas de retención de clientes enfocados en aumentar el LTV de tu marca.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="infraestructura" class="py-32 px-6 bg-zinc-950 border-y border-white/5">
         <div class="max-w-7xl mx-auto">
-            <h2 class="title-aggressive text-4xl text-center mb-16 uppercase">Únete al <span class="text-brand">Hub</span></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-dark p-8 rounded-[20px] border border-white/10 flex flex-col justify-between min-h-[300px]">
-                    <h3 class="title-aggressive text-2xl mb-4">INGLÉS C1</h3>
-                    <p class="text-gray-400">Trabajo remoto en Medellín. Español nativo.</p>
-                    <div class="flex flex-col gap-3 mt-6">
-                        <a href="mailto:prospektahub@gmail.com" class="bg-white text-black py-3 rounded-lg font-bold text-center text-xs uppercase">Por Correo</a>
-                        <a href="https://wa.me/573184499437" class="border border-white/20 py-3 rounded-lg font-bold text-center text-xs uppercase">Por WhatsApp</a>
-                    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="glass-premium p-12 rounded-[50px]">
+                    <h2 class="title-aggressive text-4xl md:text-5xl uppercase italic mb-8">Lo que necesites,<br><span class="text-[#ff6a00]">nosotros ponemos todo</span></h2>
+                    <ul class="space-y-6">
+                        <li class="flex gap-4 items-start">
+                            <i class="fa-solid fa-check-double text-[#ff6a00] mt-1"></i>
+                            <div>
+                                <span class="font-bold block uppercase text-sm">Tecnología de Punta</span>
+                                <p class="text-gray-400 text-xs mt-1">Sistemas CRM, dialers predictivos y hardware de alto rendimiento incluido.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <i class="fa-solid fa-check-double text-[#ff6a00] mt-1"></i>
+                            <div>
+                                <span class="font-bold block uppercase text-sm">Talento Humano C1</span>
+                                <p class="text-gray-400 text-xs mt-1">Reclutamiento y capacitación especializada bajo los estándares de tu empresa.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <i class="fa-solid fa-check-double text-[#ff6a00] mt-1"></i>
+                            <div>
+                                <span class="font-bold block uppercase text-sm">Espacio Físico</span>
+                                <p class="text-gray-400 text-xs mt-1">Estaciones de trabajo ergonómicas y ambientes de alto desempeño en Medellín.</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-
-                <div class="glass-dark p-8 rounded-[20px] border-2 border-brand shadow-[0_0_20px_rgba(255,106,0,0.2)] flex flex-col justify-between min-h-[300px]">
-                    <h3 class="title-aggressive text-2xl mb-4 text-brand">SENIOR CLOSER</h3>
-                    <p class="text-gray-200 font-semibold">Especialista en cierres corporativos High Ticket.</p>
-                    <div class="flex flex-col gap-3 mt-6">
-                        <a href="mailto:prospektahub@gmail.com" class="bg-brand text-white py-3 rounded-lg font-bold text-center text-xs uppercase">Por Correo</a>
-                        <a href="https://wa.me/573184499437" class="border border-brand/40 py-3 rounded-lg font-bold text-center text-xs uppercase">Por WhatsApp</a>
-                    </div>
-                </div>
-
-                <div class="glass-dark p-8 rounded-[20px] border border-white/10 flex flex-col justify-between min-h-[300px]">
-                    <h3 class="title-aggressive text-2xl mb-4">BILINGÜE OPS</h3>
-                    <p class="text-gray-400">High Performance Ops Medellín. Español nativo.</p>
-                    <div class="flex flex-col gap-3 mt-6">
-                        <a href="mailto:prospektahub@gmail.com" class="bg-white text-black py-3 rounded-lg font-bold text-center text-xs uppercase">Por Correo</a>
-                        <a href="https://wa.me/573184499437" class="border border-white/20 py-3 rounded-lg font-bold text-center text-xs uppercase">Por WhatsApp</a>
+                <div>
+                    <h3 class="title-aggressive text-3xl uppercase mb-6 italic">Soluciones <span class="text-[#ff6a00]">Ad-Hoc</span></h3>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        Si tu empresa requiere una operación que no está en la lista, la creamos desde cero. 
+                        Diseñamos la infraestructura logística, técnica y humana necesaria para que tu marca 
+                        opere sin preocuparse por la gestión administrativa.
+                    </p>
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10 italic text-sm text-gray-300">
+                        "En Prospekta Hub eliminamos la fricción operativa. Tú pones la visión, nosotros la ejecución total."
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 flex flex-col items-center bg-black border-t border-white/5">
-        <img src="image_62e723.png.png" alt="Logo" class="h-12 mb-6 opacity-50">
-        <p class="text-[10px] tracking-[0.3em] text-gray-600 uppercase">© 2026 PROSPEKTA HUB S.A.S.</p>
+    <section id="vacantes" class="py-32 px-6 bg-[#050505]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="title-aggressive text-5xl md:text-6xl uppercase italic mb-4">Únete al <span class="text-[#ff6a00]">Team</span></h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs">Postúlate a nuestras vacantes abiertas en Medellín</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-12 rounded-[50px] border border-white/5 flex flex-col justify-between min-h-[400px] hover:bg-white/[0.02] transition-colors">
+                    <div>
+                        <span class="text-[#ff6a00] text-[10px] font-black uppercase tracking-widest">Bilingüe</span>
+                        <h3 class="title-aggressive text-3xl mt-2 mb-6 uppercase">Inglés C1</h3>
+                        <p class="text-gray-400 text-sm">Operación presencial. Bonos por rendimiento y ambiente de élite.</p>
+                    </div>
+                    <div class="flex flex-col gap-3 mt-10">
+                        <a href="mailto:prospektahub@gmail.com" class="bg-white text-black py-4 rounded-2xl font-black text-center text-xs uppercase hover:bg-gray-200 transition-colors">Aplicar Correo</a>
+                        <a href="https://wa.me/573184499437" class="border border-white/10 py-4 rounded-2xl font-black text-center text-xs uppercase hover:bg-white/5 transition-all">WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="glass p-12 rounded-[50px] border-2 border-[#ff6a00] shadow-[0_0_40px_rgba(255,106,0,0.15)] flex flex-col justify-between min-h-[400px] bg-gradient-to-b from-[#ff6a00]/10 to-transparent">
+                    <div>
+                        <span class="bg-[#ff6a00] text-white px-3 py-1 text-[9px] font-black uppercase tracking-widest rounded-full">Hot Vacancy</span>
+                        <h3 class="title-aggressive text-3xl mt-4 mb-6 uppercase text-[#ff6a00]">Senior Closer</h3>
+                        <p class="text-gray-200 text-sm font-bold leading-relaxed">Especialista en ventas corporativas. Comisiones en dólares y sin techo.</p>
+                    </div>
+                    <div class="flex flex-col gap-3 mt-10">
+                        <a href="mailto:prospektahub@gmail.com" class="bg-[#ff6a00] text-white py-4 rounded-2xl font-black text-center text-xs uppercase shadow-xl hover:bg-[#e65c00] transition-colors">Aplicar Correo</a>
+                        <a href="https://wa.me/573184499437" class="border border-[#ff6a00]/30 py-4 rounded-2xl font-black text-center text-xs uppercase hover:bg-[#ff6a00]/10 transition-all">WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="glass p-12 rounded-[50px] border border-white/5 flex flex-col justify-between min-h-[400px] hover:bg-white/[0.02] transition-colors">
+                    <div>
+                        <span class="text-[#ff6a00] text-[10px] font-black uppercase tracking-widest">Operaciones</span>
+                        <h3 class="title-aggressive text-3xl mt-2 mb-6 uppercase">Bilingüe Ops</h3>
+                        <p class="text-gray-400 text-sm">Gestión de proyectos y soporte administrativo para cuentas internacionales.</p>
+                    </div>
+                    <div class="flex flex-col gap-3 mt-10">
+                        <a href="mailto:prospektahub@gmail.com" class="bg-white text-black py-4 rounded-2xl font-black text-center text-xs uppercase hover:bg-gray-200 transition-colors">Aplicar Correo</a>
+                        <a href="https://wa.me/573184499437" class="border border-white/10 py-4 rounded-2xl font-black text-center text-xs uppercase hover:bg-white/5 transition-all">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-24 px-6 border-t border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto flex flex-col items-center">
+            <img src="image_62e723.png.png" alt="Logo" class="h-14 mb-10 opacity-60 hover:opacity-100 transition-opacity">
+            
+            <div class="flex gap-10 mb-12">
+                <a href="#" class="text-gray-500 hover:text-[#ff6a00] transition-colors"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-[#ff6a00] transition-colors"><i class="fa-brands fa-linkedin text-2xl"></i></a>
+                <a href="https://wa.me/573184499437" class="text-gray-500 hover:text-[#ff6a00] transition-colors"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
+            </div>
+
+            <div class="text-center">
+                <p class="title-aggressive text-3xl opacity-20 uppercase italic mb-6">Revolucionando la Prospección</p>
+                <p class="text-[10px] tracking-[0.5em] text-gray-700 font-bold uppercase">© 2026 PROSPEKTA HUB S.A.S. • MEDELLÍN, COLOMBIA</p>
+            </div>
+        </div>
     </footer>
 
 </body>
