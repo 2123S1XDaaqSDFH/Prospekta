@@ -48,18 +48,18 @@
             100% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0); }
         }
 
-        /* Hero Background Image - Medellín Atardecer (CSS puro para asegurar carga) */
-        .hero-bg-image {
-            background-image: url('MEDELLIN_ATARDECER.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        /* Div contenedor para imagen de fondo (CSS puro para asegurar carga) */
+        #hero-bg-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
+            background-image: url('MEDELLIN_ATARDECER.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
         
         #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
@@ -91,8 +91,8 @@
     </nav>
 
     <header class="relative min-h-screen flex items-center pt-20 px-6 overflow-hidden">
-        <div class="hero-bg-image"></div>
-        <div class="absolute top-0 left-0 w-full h-100% z-0 bg-gradient-to-b from-dark/70 to-dark/100"></div>
+        <div id="hero-bg-container"></div>
+        <div class="absolute top-0 left-0 w-full h-full z-0 bg-gradient-to-b from-dark/70 to-dark/100"></div>
         
         <div id="particles-js"></div>
         
@@ -123,48 +123,58 @@
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 gsap-fade-up">
                 <h2 class="title-aggressive text-4xl md:text-5xl mb-4 uppercase">Únete al <span class="text-brand">Hub</span></h2>
-                <p class="text-gray-500">Haz clic en tu perfil para postularte vía correo o WhatsApp a <span class="text-white">prospektahub@gmail.com</span>.</p>
+                <p class="text-gray-500 max-w-2xl mx-auto">Haz clic en tu perfil para postularte vía correo o WhatsApp a <span class="text-white">prospektahub@gmail.com</span>.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[320px] border border-white/10 hover:border-white/30 transition-all gsap-fade-up card-glow">
-                    <p class="text-gray-300 text-lg leading-snug font-medium">
-                        Inglés C1 / Español. Medellín.<br/>Trabajo presencial.
-                    </p>
-                    <div class="flex flex-col gap-3">
-                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Inglés C1" class="w-full bg-white text-dark font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-gray-200 transition-colors">
-                            <i class="fa-solid fa-envelope mr-2"></i> Por Correo
+                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[380px] border border-white/10 hover:border-white/30 transition-all gsap-fade-up card-glow">
+                    <div>
+                        <h3 class="title-aggressive text-2xl text-white mb-6 uppercase">Inglés C1</h3>
+                        <p class="text-gray-300 text-base leading-relaxed font-medium">
+                            Español nativo. Medellín.<br/>Trabajo presencial.
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-3 mt-8">
+                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Inglés C1" class="w-full bg-white text-dark font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-envelope"></i> Por Correo
                         </a>
-                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Inglés%20C1" target="_blank" class="w-full border border-white/10 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-white/5 transition-colors">
-                            <i class="fa-brands fa-whatsapp mr-2"></i> Por WhatsApp
+                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Inglés%20C1" target="_blank" class="w-full border border-white/10 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-white/5 transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i> Por WhatsApp
                         </a>
                     </div>
                 </div>
 
-                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[320px] border border-brand/50 shadow-[0_0_30px_rgba(255,106,0,0.1)] hover:border-brand transition-all gsap-fade-up card-glow">
-                    <p class="text-gray-300 text-lg leading-snug font-medium">
-                        Nivel Senior. Especialista en cierres<br/>corporativos High Ticket.
-                    </p>
-                    <div class="flex flex-col gap-3">
-                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Senior Closer" class="w-full bg-brand text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center shadow-[0_0_20px_rgba(255,106,0,0.3)] hover:bg-brandHover transition-colors">
-                            <i class="fa-solid fa-envelope mr-2"></i> Por Correo
+                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[380px] border-2 border-brand shadow-[0_0_30px_rgba(255,106,0,0.2)] gsap-fade-up card-glow relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl z-0"></div>
+                    <div class="relative z-10">
+                        <h3 class="title-aggressive text-3xl text-brand mb-6 uppercase">Senior Closer</h3>
+                        <p class="text-gray-200 text-base leading-relaxed font-semibold">
+                            Especialista en cierres<br/>corporativos High Ticket.
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-3 mt-8 relative z-10">
+                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Senior Closer" class="w-full bg-brand text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center shadow-[0_0_20px_rgba(255,106,0,0.3)] hover:bg-brandHover transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-envelope"></i> Por Correo
                         </a>
-                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Senior%20Closer" target="_blank" class="w-full border border-brand/30 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-brand/10 transition-colors">
-                            <i class="fa-brands fa-whatsapp mr-2"></i> Por WhatsApp
+                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Senior%20Closer" target="_blank" class="w-full border border-brand/30 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-brand/10 transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i> Por WhatsApp
                         </a>
                     </div>
                 </div>
 
-                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[320px] border border-white/10 hover:border-white/30 transition-all gsap-fade-up card-glow">
-                    <p class="text-gray-300 text-lg leading-snug font-medium">
-                        Bilingüe & Español. High<br/>Performance Ops Medellín.
-                    </p>
-                    <div class="flex flex-col gap-3">
-                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Bilingüe Ops" class="w-full bg-white text-dark font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-gray-200 transition-colors">
-                            <i class="fa-solid fa-envelope mr-2"></i> Por Correo
+                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[380px] border border-white/10 hover:border-white/30 transition-all gsap-fade-up card-glow">
+                    <div>
+                        <h3 class="title-aggressive text-2xl text-white mb-6 uppercase">Bilingüe Ops</h3>
+                        <p class="text-gray-300 text-base leading-relaxed font-medium">
+                            Español nativo. High<br/>Performance Ops Medellín.
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-3 mt-8">
+                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Bilingüe Ops" class="w-full bg-white text-dark font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-envelope"></i> Por Correo
                         </a>
-                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Bilingüe%20Ops" target="_blank" class="w-full border border-white/10 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-white/5 transition-colors">
-                            <i class="fa-brands fa-whatsapp mr-2"></i> Por WhatsApp
+                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Bilingüe%20Ops" target="_blank" class="w-full border border-white/10 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-white/5 transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i> Por WhatsApp
                         </a>
                     </div>
                 </div>
