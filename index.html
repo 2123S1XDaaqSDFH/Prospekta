@@ -3,429 +3,666 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROSPEKTA HUB® | Operaciones de Alto Nivel Medellín - JYM Association Partners</title>
+    <title>PROSPEKTA HUB® | Operaciones Comerciales de Élite</title>
     
-    <meta name="description" content="Ejecutamos la prospección comercial de alto nivel en Medellín que su infraestructura no puede manejar. Especialistas en cierres de ventas.">
-    <link rel="canonical" href="https://tu-usuario.github.io/tu-repo/"> <script src="https://cdn.tailwindcss.com"></script>
-    
+    <meta name="description" content="Infraestructura táctica de ventas y prospección en Medellín.">
+    <meta name="keywords" content="Ventas, Medellín, BPO, Prospección, Bilingüe, Cierre de Ventas">
+    <meta name="robots" content="index, follow">
+
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Outfit:wght@100;300;500;700;900&display=swap" rel="stylesheet">
     
     <script>
-        // Configuración de Tailwind para usar las fuentes cargadas
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'ph-accent': '#ff6a00',
-                        'ph-bg-dark': '#050505',
-                        'ph-bg-card': '#0a0a0a',
+                        'brand-orange': '#ff6a00',
+                        'brand-black': '#050505',
+                        'brand-gray-dark': '#0a0a0a',
+                        'brand-gray-light': '#1a1a1a',
+                        'accent-glow': 'rgba(255, 106, 0, 0.3)',
                     },
                     fontFamily: {
                         'jakarta': ['"Plus Jakarta Sans"', 'sans-serif'],
                         'outfit': ['Outfit', 'sans-serif'],
                     },
-                    keyframes: {
-                        // Animación del carrusel infinito (Alianzas)
-                        scroll: {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-50%)' }, // Scroll hasta la mitad (donde están los duplicados)
-                        },
+                    spacing: {
+                        '128': '32rem',
+                        '144': '36rem',
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '3rem',
+                        '6xl': '4rem',
                     },
                     animation: {
-                        'scroll-infinite': 'scroll 45s linear infinite',
+                        'marquee': 'marquee 40s linear infinite',
+                        'marquee-reverse': 'marquee-reverse 40s linear infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
                     },
-                },
-            },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        },
+                        'marquee-reverse': {
+                            '0%': { transform: 'translateX(-50%)' },
+                            '100%': { transform: 'translateX(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-30px)' }
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: 0.3, transform: 'scale(1)' },
+                            '50%': { opacity: 0.6, transform: 'scale(1.1)' }
+                        }
+                    }
+                }
+            }
         }
     </script>
 
     <style type="text/css">
-        /* Estilos CSS globales necesarios no cubiertos por Tailwind */
+        /* --- RESET & BASE --- */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #ff6a00; border-radius: 10px; }
+        
         body {
-            background-color: #050505; /* Fallback de color de fondo */
-            color: white;
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Clase para aplicar efecto glassmorphism oscuro profesional */
-        .glass-dark {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px); /* Soporte para Safari */
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        /* --- CLASES DINÁMICAS --- */
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+            color: transparent;
         }
 
-        /* Configuración para la imagen de fondo del Hero (Medellín) */
-        .hero-bg-img { 
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), 
-                              url('https://images.unsplash.com/photo-1593055357429-62e844060ea8?q=80&w=1920&auto=format&fit=crop'); 
-            background-size: cover;
-            background-position: center; 
-            background-attachment: fixed; /* Efecto Parallax opcional */
+        .glass-premium {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* Configuración para la imagen de fondo de Vacantes (Equipo) */
-        .vacantes-bg-img {
-            background-image: linear-gradient(rgba(5,5,5,0.92), rgba(5,5,5,0.92)), 
-                              url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1920&auto=format&fit=crop');
+        .glass-premium:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #ff6a00;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* --- HERO ESTRUCTURA (IMAGEN MEDELLÍN) --- */
+        .hero-container {
+            position: relative;
+            background-image: linear-gradient(rgba(5,5,5,0.1), rgba(5,5,5,0.95)), 
+                              url('image%20medellin.png');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
+            height: 110vh;
         }
 
-        /* Estilos específicos para las tarjetas de testimonio dentro del carrusel */
-        .review-card-container {
-            width: 320px;
+        /* --- SISTEMA DE ALIANZAS --- */
+        .alliance-wrapper {
+            display: flex;
+            width: max-content;
+        }
+
+        .alliance-item {
+            width: 450px;
             flex-shrink: 0;
-            margin-right: 1.5rem;
+            margin-right: 2rem;
+            padding: 4rem;
+            border-radius: 50px;
+            background: #ffffff;
+            color: #000000;
+            cursor: pointer;
         }
 
-        /* Efecto Glow en texto (Néon) */
-        .neon-glow-orange {
-            color: #ff6a00;
-            text-shadow: 0 0 15px rgba(255, 106, 0, 0.45);
+        /* --- DECORACIONES GEOMÉTRICAS --- */
+        .bg-blur-orange {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,106,0,0.15) 0%, transparent 70%);
+            filter: blur(80px);
+            z-index: -1;
         }
-        
-        /* Ocultar scrollbar para el contenedor del carrusel */
-        .marquee-container {
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none;  /* IE and Edge */
+
+        .noise-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9999;
         }
-        .marquee-container::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
+
+        /* --- ANIMACIÓN DE NÚMEROS --- */
+        .stat-number {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(to bottom, #fff, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
+        /* --- FOOTER ESTRATÉGICO --- */
+        .footer-mask {
+            background: radial-gradient(circle at top, #1a1a1a 0%, #050505 100%);
+        }
+
+        .cta-button-glow {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button-glow::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(transparent, rgba(255,106,0,0.3), transparent 30%);
+            animation: rotate-glow 4s linear infinite;
+        }
+
+        @keyframes rotate-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- SECCIÓN DE METODOLOGÍA --- */
+        .method-card {
+            border-left: 2px solid rgba(255, 106, 0, 0.1);
+            padding-left: 3rem;
+            position: relative;
+        }
+
+        .method-card::before {
+            content: '';
+            position: absolute;
+            left: -6px; top: 0;
+            width: 10px; height: 10px;
+            background: #ff6a00;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ff6a00;
+        }
+
+        /* --- ESTILOS DE TABLAS Y LISTAS --- */
+        .data-list dt { font-weight: 800; color: #ff6a00; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; }
+        .data-list dd { margin-bottom: 1.5rem; color: #999; font-weight: 300; }
     </style>
 </head>
-<body class="font-jakarta antialiased">
+<body>
 
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-        <symbol id="icon-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
-        <symbol id="icon-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967c-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.485-.01c-.174 0-.458.066-.697.326c-.24.26-1.103 1.077-1.103 2.629s1.127 3.051 1.282 3.251c.156.202 2.215 3.38 5.368 4.744c.75.324 1.334.518 1.788.662c.753.239 1.438.205 1.98.125c.602-.09 1.758-.719 2.006-1.412c.247-.694.247-1.289.172-1.412c-.074-.123-.274-.199-.571-.349m-5.472 6.164c-2.353 0-4.502-.89-6.26-2.584C3.843 16.147 3.069 13.9 3.069 11.5c0-4.717 3.83-8.551 8.547-8.551s8.546 3.834 8.546 8.551c0 2.355-.889 4.504-2.583 6.261s-3.906 2.583-6.26 2.583m0-18.163a9.61 9.61 0 0 0-9.607 9.612c0 1.983.612 3.9 1.764 5.511L3.02 20.916l3.567-1.129a9.61 9.61 0 0 0 5.02 1.41a9.61 9.61 0 0 0 9.607-9.612a9.61 9.61 0 0 0-9.607-9.612"/></symbol>
-    </svg>
+    <div class="noise-bg"></div>
 
-    <nav class="fixed top-0 w-full z-50 bg-ph-bg-dark/80 backdrop-blur-md border-b border-white/5 h-20">
-        <div class="max-w-[1920px] mx-auto h-full px-6 md:px-12 flex justify-between items-center relative">
-            <div class="flex items-center gap-3">
-                <img src="https://via.placeholder.com/150x40/ff6a00/ffffff?text=LOGO" alt="PROSPEKTA Logo" class="h-9 w-auto object-contain">
-                <span class="font-outfit font-black text-2xl tracking-tighter uppercase neon-glow-orange">HUB<span class="text-xs align-top">®</span></span>
+    <nav class="fixed top-0 w-full z-[1000] p-8 flex justify-between items-center transition-all duration-700" id="navbar">
+        <div class="flex items-center gap-6 group cursor-pointer">
+            <div class="relative">
+                <img src="image_62e723.png.png" alt="Logo" class="h-12 w-auto relative z-10">
+                <div class="absolute inset-0 bg-brand-orange blur-xl opacity-0 group-hover:opacity-40 transition-all"></div>
             </div>
-            
-            <a href="https://wa.me/573184499437?text=Hola%20Prospekta%20Hub,%20quiero%20más%20información" 
-               target="_blank" rel="noopener"
-               class="bg-ph-accent text-white text-[11px] font-extrabold px-7 py-3 rounded-full tracking-[2.5px] uppercase shadow-lg shadow-ph-accent/10 hover:bg-white hover:text-ph-accent transition-all duration-300">
-                WHATSAPP DIRECTO
+            <div class="flex flex-col">
+                <h1 class="font-outfit font-black text-3xl tracking-tighter leading-none uppercase italic">PROSPEKTA HUB®</h1>
+                <p class="text-[7px] tracking-[6px] uppercase opacity-40 font-bold">Operaciones de Alto Nivel</p>
+            </div>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-12 text-[10px] font-black uppercase tracking-[4px]">
+            <a href="#vision" class="hover:text-brand-orange transition-all relative group">
+                Visión
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-orange group-hover:w-full transition-all"></span>
+            </a>
+            <a href="#metodologia" class="hover:text-brand-orange transition-all relative group">
+                Metodología
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-orange group-hover:w-full transition-all"></span>
+            </a>
+            <a href="#alianzas" class="hover:text-brand-orange transition-all relative group">
+                Alianzas
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-orange group-hover:w-full transition-all"></span>
+            </a>
+            <a href="#vacantes" class="hover:text-brand-orange transition-all relative group">
+                Vacantes
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-brand-orange group-hover:w-full transition-all"></span>
             </a>
         </div>
+
+        <a href="https://wa.me/573184499437" class="bg-brand-orange text-white px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-brand-orange transition-all duration-500 shadow-2xl shadow-brand-orange/20">
+            Contactar Socio
+        </a>
     </nav>
 
-    <section id="hero" class="hero-bg-img min-h-screen flex flex-col justify-center px-6 md:px-16 pt-28 pb-20 relative">
-        <div class="max-w-[1200px] mx-auto w-full z-10 gsap-animate-hero">
-            <h1 class="font-outfit text-6xl md:text-[100px] lg:text-[120px] font-black leading-[0.9] mb-10 tracking-tighter uppercase italic">
-                OPERACIONES DE<br>
-                <span class="text-ph-accent drop-shadow-[0_0_15px_rgba(255,106,0,0.3)]">ALTO NIVEL.</span>
+    <section class="hero-container flex items-center px-6 md:px-32 relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-brand-black to-transparent z-20"></div>
+        
+        <div class="max-w-7xl relative z-30">
+            <div class="flex items-center gap-4 mb-10 gsap-hero-element">
+                <div class="w-12 h-[1px] bg-brand-orange"></div>
+                <span class="text-brand-orange font-bold text-xs uppercase tracking-[8px]">Medellín • Antioquia • CO</span>
             </div>
-            <p class="text-gray-200 text-lg md:text-xl lg:text-2xl font-light leading-relaxed max-w-[750px] border-l-4 border-ph-accent pl-8 ml-2 mt-8 gsap-animate-hero-text">
-                Ejecutamos la prospección comercial que su infraestructura no puede manejar. Somos el brazo ejecutor de cierres en Medellín.
+            
+            <h2 class="font-outfit text-6xl md:text-[140px] font-black leading-[0.8] uppercase italic tracking-tighter mb-12 gsap-hero-element">
+                CONQUISTA EL <br>
+                <span class="text-brand-orange">MERCADO.</span>
+            </h2>
+
+            <p class="max-w-3xl text-gray-300 text-xl md:text-3xl font-light leading-relaxed mb-16 gsap-hero-element">
+                Somos la infraestructura táctica que su empresa necesita para escalar operaciones de prospección y cierre en mercados internacionales.
             </p>
-        </div>
-        
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/40 text-sm tracking-[5px] font-thin uppercase hidden md:block">
-            Scroll down
-        </div>
-    </section>
 
-    <section id="alianzas" class="py-32 bg-white overflow-hidden relative">
-        <div class="absolute inset-0 bg-gray-50 opacity-50"></div> <div class="max-w-[1400px] mx-auto px-6 z-10 relative">
-            <h2 class="font-outfit text-ph-bg-dark text-center text-5xl md:text-6xl font-black mb-20 uppercase tracking-tight gsap-animate-title">
-                Alianzas de <span class="text-ph-accent italic underline decoration-ph-accent/30 decoration-4 underline-offset-8">Élite.</span>
-            </h2>
-        </div>
-        
-        <div class="marquee-container w-full overflow-hidden whitespace-nowrap group">
-            <div class="marquee flex animate-scroll-infinite hover:[animation-play-state:paused] gsap-animate-carousel">
-                
-                <div class="review-card-container">
-                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
-                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Juan Gómez - SURA">
-                            <div>
-                                <p class="text-gray-950 font-extrabold text-lg">Juan Gómez R.</p>
-                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Gerente de Ventas - SURA</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
-                            "Eficiencia total en el agendamiento de citas corporativas. Prospekta es otro nivel de ejecución."
-                        </p>
-                        <img src="https://via.placeholder.com/80x30/dddddd/666666?text=SURA" alt="Logo SURA" class="h-6 w-auto object-contain opacity-70 mt-auto">
-                    </div>
+            <div class="flex flex-wrap gap-8 gsap-hero-element">
+                <div class="glass-premium p-8 rounded-4xl flex flex-col gap-2 min-w-[200px]">
+                    <span class="text-brand-orange font-black text-4xl italic tracking-tighter">B2B</span>
+                    <span class="text-[9px] uppercase tracking-[3px] opacity-40">Especialización</span>
                 </div>
-
-                <div class="review-card-container">
-                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
-                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Carolina Restrepo - Bancolombia">
-                            <div>
-                                <p class="text-gray-950 font-extrabold text-lg">Carolina Restrepo</p>
-                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Senior B2B Closer - BANCOLOMBIA</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
-                            "La capacidad de cierre de sus asesores ha superado nuestras métricas trimestrales de captación."
-                        </p>
-                        <img src="https://via.placeholder.com/120x30/dddddd/666666?text=BANCOLOMBIA" alt="Logo Bancolombia" class="h-6 w-auto object-contain opacity-70 mt-auto">
-                    </div>
+                <div class="glass-premium p-8 rounded-4xl flex flex-col gap-2 min-w-[200px]">
+                    <span class="text-brand-orange font-black text-4xl italic tracking-tighter">C1/C2</span>
+                    <span class="text-[9px] uppercase tracking-[3px] opacity-40">Nivel de Idioma</span>
                 </div>
-
-                <div class="review-card-container">
-                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
-                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
-                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Carlos Martínez - Argos">
-                            <div>
-                                <p class="text-gray-950 font-extrabold text-lg">Carlos Martínez E.</p>
-                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Dir. Expansión Latam - ARGOS</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
-                            "Transparencia y ejecución implacable. Entienden el mercado corporativo a la perfección."
-                        </p>
-                        <img src="https://via.placeholder.com/80x30/dddddd/666666?text=ARGOS" alt="Logo Argos" class="h-6 w-auto object-contain opacity-70 mt-auto">
-                    </div>
-                </div>
-
-                <div class="review-card-container">
-                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
-                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
-                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Silvia Valencia - Nutresa">
-                            <div>
-                                <p class="text-gray-950 font-extrabold text-lg">Silvia Valencia P.</p>
-                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Coordinadora Comercial - NUTRESA</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
-                            "Procesos comerciales impecables y una cultura orientada a resultados envidiable."
-                        </p>
-                        <img src="https://via.placeholder.com/100x30/dddddd/666666?text=NUTRESA" alt="Logo Nutresa" class="h-6 w-auto object-contain opacity-70 mt-auto">
-                    </div>
-                </div>
-                <div class="review-card-container">
-                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
-                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Juan Gómez - SURA">
-                            <div>
-                                <p class="text-gray-950 font-extrabold text-lg">Juan Gómez R.</p>
-                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Gerente de Ventas - SURA</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
-                            "Eficiencia total en el agendamiento de citas corporativas. Prospekta es otro nivel de ejecución."
-                        </p>
-                        <img src="https://via.placeholder.com/80x30/dddddd/666666?text=SURA" alt="Logo SURA" class="h-6 w-auto object-contain opacity-70 mt-auto">
-                    </div>
-                </div>
-
-                <div class="review-card-container">
-                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
-                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Carolina Restrepo - Bancolombia">
-                            <div>
-                                <p class="text-gray-950 font-extrabold text-lg">Carolina Restrepo</p>
-                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Senior B2B Closer - BANCOLOMBIA</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
-                            "La capacidad de cierre de sus asesores ha superado nuestras métricas trimestrales de captación."
-                        </p>
-                        <img src="https://via.placeholder.com/120x30/dddddd/666666?text=BANCOLOMBIA" alt="Logo Bancolombia" class="h-6 w-auto object-contain opacity-70 mt-auto">
-                    </div>
-                </div>
-
-                <div class="review-card-container">
-                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
-                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
-                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Carlos Martínez - Argos">
-                            <div>
-                                <p class="text-gray-950 font-extrabold text-lg">Carlos Martínez E.</p>
-                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Dir. Expansión Latam - ARGOS</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
-                            "Transparencia y ejecución implacable. Entienden el mercado corporativo a la perfección."
-                        </p>
-                        <img src="https://via.placeholder.com/80x30/dddddd/666666?text=ARGOS" alt="Logo Argos" class="h-6 w-auto object-contain opacity-70 mt-auto">
-                    </div>
-                </div>
-
-                <div class="review-card-container">
-                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
-                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
-                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Silvia Valencia - Nutresa">
-                            <div>
-                                <p class="text-gray-950 font-extrabold text-lg">Silvia Valencia P.</p>
-                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Coordinadora Comercial - NUTRESA</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
-                            "Procesos comerciales impecables y una cultura orientada a resultados envidiable."
-                        </p>
-                        <img src="https://via.placeholder.com/100x30/dddddd/666666?text=NUTRESA" alt="Logo Nutresa" class="h-6 w-auto object-contain opacity-70 mt-auto">
-                    </div>
-                </div>
-                </div>
-        </div>
-    </section>
-
-    <section id="vacantes" class="vacantes-bg-img py-32 px-6 lg:px-24 border-t border-white/5 relative">
-        <div class="max-w-[1400px] mx-auto z-10 relative">
-            <h2 class="font-outfit text-5xl md:text-6xl font-black mb-16 text-center uppercase tracking-tight gsap-animate-title">
-                VACANTES <span class="text-ph-accent drop-shadow-[0_0_15px_rgba(255,106,0,0.2)]">DISPONIBLES.</span>
-            </h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-center gsap-animate-cards">
-                <div class="glass-dark p-10 rounded-[40px] border-t-2 border-ph-accent hover:border-white group hover:scale-[1.03] transition-all duration-500 flex flex-col h-full shadow-xl shadow-black/30">
-                    <p class="font-outfit font-black text-2xl mb-4 group-hover:text-ph-accent">Interprete Bilingüe</p>
-                    <p class="text-gray-200 text-base font-light mb-8 flex-grow">Inglés C1 Avanzado / Español Nativo. Experiencia en interpretación simultánea.</p>
-                    <a href="https://wa.me/573184499437?text=Quiero%20postularme%20como%20Interprete%20Bilingüe" class="inline-block w-full bg-transparent border-2 border-ph-accent text-white py-3 rounded-full text-xs font-bold tracking-widest hover:bg-ph-accent transition-colors duration-300">
-                        POSTULARSE
-                    </a>
-                </div>
-                <div class="glass-dark p-10 rounded-[40px] border-t-2 border-ph-accent hover:border-white group hover:scale-[1.03] transition-all duration-500 flex flex-col h-full shadow-xl shadow-black/30">
-                    <p class="font-outfit font-black text-2xl mb-4 group-hover:text-ph-accent">Closer de Ventas B2B</p>
-                    <p class="text-gray-200 text-base font-light mb-8 flex-grow">Nivel Senior. Especialista en cierres de alto valor. Basado en Medellín.</p>
-                    <a href="https://wa.me/573184499437?text=Quiero%20postularme%20como%20Closer%20de%20Ventas" class="inline-block w-full bg-transparent border-2 border-ph-accent text-white py-3 rounded-full text-xs font-bold tracking-widest hover:bg-ph-accent transition-colors duration-300">
-                        POSTULARSE
-                    </a>
-                </div>
-                <div class="glass-dark p-10 rounded-[40px] border-t-2 border-ph-accent hover:border-white group hover:scale-[1.03] transition-all duration-500 flex flex-col h-full shadow-xl shadow-black/30">
-                    <p class="font-outfit font-black text-2xl mb-4 group-hover:text-ph-accent">Asesores Comerciales</p>
-                    <p class="text-gray-200 text-base font-light mb-8 flex-grow">Bilingüe (Inglés/Español) con fuerte orientación a resultados y captación.</p>
-                    <a href="https://wa.me/573184499437?text=Quiero%20postularme%20como%20Asesor%20Comercial" class="inline-block w-full bg-transparent border-2 border-ph-accent text-white py-3 rounded-full text-xs font-bold tracking-widest hover:bg-ph-accent transition-colors duration-300">
-                        POSTULARSE
-                    </a>
+                <div class="glass-premium p-8 rounded-4xl flex flex-col gap-2 min-w-[200px]">
+                    <span class="text-brand-orange font-black text-4xl italic tracking-tighter">+5k</span>
+                    <span class="text-[9px] uppercase tracking-[3px] opacity-40">Leads Mensuales</span>
                 </div>
             </div>
-            
-            <p class="text-center mt-20 text-xs tracking-[6px] opacity-60 uppercase font-light">Envía tu CV al contacto directo.</p>
         </div>
     </section>
 
-    <section id="contacto" class="py-32 px-6 lg:px-16 bg-ph-bg-dark border-t border-white/5 relative">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-dotted.png')] opacity-30"></div> <div class="max-w-[1500px] mx-auto grid md:grid-cols-2 gap-20 items-center z-10 relative">
-            
-            <div class="space-y-12 gsap-animate-form">
-                <h3 class="font-outfit text-5xl lg:text-6xl font-black italic uppercase tracking-tighter leading-tight gsap-animate-title">
-                    Hablemos de <br><span class="text-ph-accent underline decoration-ph-accent/30 decoration-4 underline-offset-8 drop-shadow-[0_0_15px_rgba(255,106,0,0.15)]">Negocios.</span>
+    <section id="vision" class="py-40 px-6 md:px-32 bg-brand-black relative">
+        <div class="bg-blur-orange top-0 right-0"></div>
+        
+        <div class="grid lg:grid-cols-2 gap-32 items-center">
+            <div class="gsap-vision-text">
+                <h3 class="font-outfit text-5xl md:text-8xl font-black uppercase tracking-tighter italic mb-12">
+                    NUESTRA <br><span class="text-outline">FILOSOFÍA.</span>
+                </h3>
+                <p class="text-gray-400 text-lg leading-loose mb-12 font-light">
+                    En Prospekta Hub, no creemos en las llamadas en frío sin estrategia. Creemos en la **ingeniería de la persuasión**. Cada contacto es una oportunidad de posicionar su marca en el nivel más alto del mercado global.
+                </p>
+                
+                <div class="space-y-8">
+                    <div class="flex items-start gap-8 group">
+                        <div class="w-16 h-16 rounded-2xl bg-brand-gray-light flex items-center justify-center group-hover:bg-brand-orange transition-all duration-500">
+                            <span class="text-2xl">⚡</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl uppercase mb-2">Velocidad de Ejecución</h4>
+                            <p class="text-gray-500 text-sm italic">Implementamos campañas en menos de 72 horas con métricas claras.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-8 group">
+                        <div class="w-16 h-16 rounded-2xl bg-brand-gray-light flex items-center justify-center group-hover:bg-brand-orange transition-all duration-500">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl uppercase mb-2">Targeting de Élite</h4>
+                            <p class="text-gray-500 text-sm italic">Llegamos al CEO, al Director y al tomador de decisión real.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative gsap-vision-image">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000" class="rounded-[60px] grayscale brightness-50 border border-white/5">
+                <div class="absolute -bottom-10 -left-10 glass-premium p-12 rounded-5xl border-brand-orange">
+                    <p class="font-outfit text-6xl font-black italic text-brand-orange">100%</p>
+                    <p class="text-[10px] tracking-[4px] uppercase font-bold opacity-60">Resultados Medellín</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodologia" class="py-40 bg-brand-gray-dark border-y border-white/5">
+        <div class="px-6 md:px-32">
+            <h3 class="font-outfit text-center text-5xl md:text-9xl font-black uppercase italic tracking-tighter mb-40">
+                PROCESO DE <span class="text-brand-orange">PODER.</span>
+            </h3>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="method-card gsap-method">
+                    <span class="text-brand-orange font-black text-xs tracking-widest uppercase mb-4 block">Fase 01</span>
+                    <h4 class="text-3xl font-black uppercase italic mb-6">Discovery</h4>
+                    <ul class="text-gray-500 space-y-4 text-sm font-light">
+                        <li>• Análisis de Infraestructura</li>
+                        <li>• Auditoría de CRM</li>
+                        <li>• Perfilación de Avatar Ideal</li>
+                        <li>• Definición de KPI Pro</li>
+                    </ul>
+                </div>
+
+                <div class="method-card gsap-method">
+                    <span class="text-brand-orange font-black text-xs tracking-widest uppercase mb-4 block">Fase 02</span>
+                    <h4 class="text-3xl font-black uppercase italic mb-6">Inbound</h4>
+                    <ul class="text-gray-500 space-y-4 text-sm font-light">
+                        <li>• Nutrición de Prospectos</li>
+                        <li>• Email Marketing Táctico</li>
+                        <li>• Automatización de Agenda</li>
+                        <li>• Lead Scoring Avanzado</li>
+                    </ul>
+                </div>
+
+                <div class="method-card gsap-method">
+                    <span class="text-brand-orange font-black text-xs tracking-widest uppercase mb-4 block">Fase 03</span>
+                    <h4 class="text-3xl font-black uppercase italic mb-6">Outbound</h4>
+                    <ul class="text-gray-500 space-y-4 text-sm font-light">
+                        <li>• Cold Calling Premium</li>
+                        <li>• Social Selling (LinkedIn)</li>
+                        <li>• Demo High-Performance</li>
+                        <li>• Gestión de Objeciones</li>
+                    </ul>
+                </div>
+
+                <div class="method-card gsap-method">
+                    <span class="text-brand-orange font-black text-xs tracking-widest uppercase mb-4 block">Fase 04</span>
+                    <h4 class="text-3xl font-black uppercase italic mb-6">Retention</h4>
+                    <ul class="text-gray-500 space-y-4 text-sm font-light">
+                        <li>• Customer Success Plan</li>
+                        <li>• Up-selling Estratégico</li>
+                        <li>• Fidelización Corporativa</li>
+                        <li>• Reporte Mensual ROI</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="alianzas" class="py-40 bg-white overflow-hidden relative">
+        <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-brand-black to-transparent"></div>
+        
+        <div class="mb-32 px-6 md:px-32">
+            <h3 class="font-outfit text-black text-5xl md:text-8xl font-black uppercase italic tracking-tighter leading-none">
+                MARCAS QUE <br><span class="text-brand-orange">CONFÍAN.</span>
+            </h3>
+        </div>
+
+        <div class="flex overflow-hidden mb-8 animate-marquee">
+            <div class="alliance-wrapper">
+                <div class="alliance-item shadow-xl border border-gray-100">
+                    <div class="flex justify-between items-start mb-8">
+                        <img src="https://images.unsplash.com/photo-1599305090748-3663b878671f?q=80&w=100" class="h-12 w-auto grayscale">
+                        <span class="text-brand-orange font-black">★★★★★</span>
+                    </div>
+                    <p class="text-2xl font-black italic mb-6">"Prospekta Hub cambió nuestra visión de captación en Medellín. Resultados medibles desde la semana 1."</p>
+                    <div>
+                        <p class="font-bold uppercase tracking-widest text-[10px]">Andrés Felipe</p>
+                        <p class="text-gray-400 text-[10px] uppercase tracking-widest">Director de Operaciones - ARGOS</p>
+                    </div>
+                </div>
+                <div class="alliance-item shadow-xl border border-gray-100">
+                    <div class="flex justify-between items-start mb-8">
+                        <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=100" class="h-12 w-auto grayscale">
+                        <span class="text-brand-orange font-black">★★★★★</span>
+                    </div>
+                    <p class="text-2xl font-black italic mb-6">"El nivel de bilingüismo y la capacidad de cierre de sus asesores es simplemente incomparable."</p>
+                    <div>
+                        <p class="font-bold uppercase tracking-widest text-[10px]">Carolina Velez</p>
+                        <p class="text-gray-400 text-[10px] uppercase tracking-widest">Gerente Comercial - SURA</p>
+                    </div>
+                </div>
+                <div class="alliance-item shadow-xl">
+                    <p class="text-2xl font-black italic mb-6">"Eficiencia, transparencia y pasión por el cierre."</p>
+                    <p class="font-bold uppercase tracking-widest text-[10px]">Alianza Corporativa</p>
+                </div>
+            </div>
+            <div class="alliance-wrapper">
+                <div class="alliance-item shadow-xl">...</div>
+                <div class="alliance-item shadow-xl">...</div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-brand-black to-transparent"></div>
+    </section>
+
+    <section id="vacantes" class="py-40 px-6 md:px-32 bg-brand-black relative">
+        <div class="bg-blur-orange bottom-0 left-0"></div>
+        
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-32 gap-8">
+                <div>
+                    <h3 class="font-outfit text-5xl md:text-8xl font-black uppercase italic tracking-tighter leading-none mb-8">
+                        FORJA TU <br><span class="text-brand-orange">DESTINO.</span>
+                    </h3>
+                    <p class="text-gray-500 text-xl font-light max-w-xl">Buscamos el 1% del talento en Medellín. No contratamos empleados, reclutamos cerradores de élite.</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-brand-orange font-black text-6xl italic tracking-tighter">JOIN US</p>
+                    <p class="text-[10px] tracking-[6px] uppercase opacity-40">Prospekta Careers</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="glass-premium p-12 rounded-6xl border-t-4 border-brand-orange flex flex-col justify-between h-[600px] hover:scale-105 transition-all">
+                    <div>
+                        <div class="flex justify-between items-center mb-10">
+                            <span class="bg-white/5 px-4 py-2 rounded-full text-[8px] font-bold uppercase tracking-widest">Full Time</span>
+                            <span class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
+                        </div>
+                        <h4 class="text-4xl font-black uppercase italic mb-6 leading-none">Interprete <br>Bilingüe</h4>
+                        <p class="text-gray-400 font-light mb-8 text-sm leading-relaxed">Operaciones para el sector salud y legal en USA. Requerimos nivel C1/C2 verificado y pasión por el servicio de excelencia.</p>
+                        
+                        <dl class="data-list">
+                            <dt>Salario Estimado</dt>
+                            <dd>$4.5M - $6.5M COP + Bonos</dd>
+                            <dt>Modalidad</dt>
+                            <dd>Híbrido (Medellín)</dd>
+                        </dl>
+                    </div>
+                    <a href="https://wa.me/573184499437" class="w-full py-6 rounded-3xl bg-white text-black font-black uppercase tracking-widest text-[10px] text-center hover:bg-brand-orange hover:text-white transition-all">Enviar Hoja de Vida</a>
+                </div>
+
+                <div class="glass-premium p-12 rounded-6xl border-t-4 border-brand-orange flex flex-col justify-between h-[600px] hover:scale-105 transition-all">
+                    <div>
+                        <div class="flex justify-between items-center mb-10">
+                            <span class="bg-brand-orange/20 text-brand-orange px-4 py-2 rounded-full text-[8px] font-bold uppercase tracking-widest italic">Senior Only</span>
+                            <span class="w-3 h-3 rounded-full bg-orange-500 animate-pulse"></span>
+                        </div>
+                        <h4 class="text-4xl font-black uppercase italic mb-6 leading-none">Closer de <br>Ventas Senior</h4>
+                        <p class="text-gray-400 font-light mb-8 text-sm leading-relaxed">Especialista en cierres de alto ticket (Real Estate / Autos de Lujo). Habilidades de negociación avanzadas requeridas.</p>
+                        
+                        <dl class="data-list">
+                            <dt>Comisiones</dt>
+                            <dd>Sin techo (Promedio $10M+)</dd>
+                            <dt>Experiencia</dt>
+                            <dd>3+ Años en Cierres</dd>
+                        </dl>
+                    </div>
+                    <a href="https://wa.me/573184499437" class="w-full py-6 rounded-3xl bg-brand-orange text-white font-black uppercase tracking-widest text-[10px] text-center hover:bg-white hover:text-brand-orange transition-all shadow-xl shadow-brand-orange/20">Aplicar Vacante</a>
+                </div>
+
+                <div class="glass-premium p-12 rounded-6xl border-t-4 border-brand-orange flex flex-col justify-between h-[600px] hover:scale-105 transition-all">
+                    <div>
+                        <div class="flex justify-between items-center mb-10">
+                            <span class="bg-white/5 px-4 py-2 rounded-full text-[8px] font-bold uppercase tracking-widest">Entry Level</span>
+                            <span class="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></span>
+                        </div>
+                        <h4 class="text-4xl font-black uppercase italic mb-6 leading-none">Asesor <br>Comercial Jr.</h4>
+                        <p class="text-gray-400 font-light mb-8 text-sm leading-relaxed">Formación integral en prospección. Buscamos jóvenes con hambre de éxito y excelente actitud comercial.</p>
+                        
+                        <dl class="data-list">
+                            <dt>Beneficios</dt>
+                            <dd>Plan Carrera + Entrenamiento</dd>
+                            <dt>Requisito</dt>
+                            <dd>Excelente Comunicación</dd>
+                        </dl>
+                    </div>
+                    <a href="https://wa.me/573184499437" class="w-full py-6 rounded-3xl border border-white/20 text-white font-black uppercase tracking-widest text-[10px] text-center hover:bg-white hover:text-black transition-all">Postularme</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-40 px-6 md:px-32 bg-brand-gray-dark border-t border-white/5">
+        <div class="grid lg:grid-cols-2 gap-32">
+            <div>
+                <h3 class="font-outfit text-5xl md:text-8xl font-black uppercase italic tracking-tighter mb-16 leading-none">
+                    LLEVEMOS <br>SU NEGOCIO <br><span class="text-brand-orange italic underline decoration-4 underline-offset-8">AL CIERRE.</span>
                 </h3>
                 
-                <div class="space-y-6">
-                    <input type="text" placeholder="Razón Social / Empresa (Opcional)" class="bg-ph-bg-card border border-white/10 p-5 w-full rounded-2xl focus:border-ph-accent/60 outline-none transition-all duration-300 focus:shadow-md focus:shadow-ph-accent/5 text-gray-100 placeholder:text-gray-600">
-                    <input type="tel" placeholder="WhatsApp / Teléfono del Cliente" class="bg-ph-bg-card border border-white/10 p-5 w-full rounded-2xl focus:border-ph-accent/60 outline-none transition-all duration-300 focus:shadow-md focus:shadow-ph-accent/5 text-gray-100 placeholder:text-gray-600">
-                    <button class="w-full bg-ph-accent py-5 rounded-2xl font-black uppercase tracking-[3px] text-xs shadow-lg shadow-ph-accent/20 hover:bg-white hover:text-ph-accent transition-all duration-300 transform hover:translate-y-[-2px]">
-                        SOLICITAR CONSULTORÍA GRATUITA
-                    </button>
+                <div class="space-y-12 mb-20">
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-[4px] text-brand-orange mb-4">Línea Directa Comercial</p>
+                        <a href="tel:3184499437" class="text-5xl md:text-7xl font-black hover:text-brand-orange transition-all tracking-tighter italic">318 449 9437</a>
+                    </div>
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-[4px] text-brand-orange mb-4">Soporte y Operaciones</p>
+                        <a href="tel:3023974412" class="text-5xl md:text-7xl font-black hover:text-brand-orange transition-all tracking-tighter italic">302 397 4412</a>
+                    </div>
+                </div>
+
+                <div class="flex gap-10 items-center opacity-40">
+                    <img src="image_62e723.png.png" class="h-10 grayscale invert">
+                    <p class="text-[8px] font-bold uppercase tracking-[6px] max-w-[150px]">Medellín Headquarters Global Support</p>
                 </div>
             </div>
-            
-            <div class="glass-dark p-12 lg:p-16 rounded-[50px] border border-ph-accent/30 shadow-2xl shadow-black/40 gsap-animate-lines relative overflow-hidden group">
-                <div class="absolute inset-0 bg-ph-accent opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700"></div> <h4 class="font-outfit text-3xl font-black mb-12 neon-glow-orange uppercase tracking-tighter flex items-center gap-3">
-                    <svg class="w-6 h-6 text-ph-accent"><use href="#icon-phone"></use></svg>
-                    Líneas Directas:
-                </h4>
-                
-                <div class="space-y-10 mb-8">
-                    <a href="tel:3184499437" class="group flex items-center gap-6 text-5xl md:text-5xl lg:text-6xl font-black tracking-tight leading-none hover:text-ph-accent transition-colors duration-300 relative">
-                        318 449 9437
-                        <svg class="w-8 h-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 text-ph-accent"><use href="#icon-whatsapp"></use></svg>
-                    </a>
-                    <a href="tel:3023974412" class="group flex items-center gap-6 text-5xl md:text-5xl lg:text-6xl font-black tracking-tight leading-none hover:text-ph-accent transition-colors duration-300 relative">
-                        302 397 4412
-                        <svg class="w-8 h-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 text-ph-accent"><use href="#icon-whatsapp"></use></svg>
-                    </a>
-                </div>
-                <p class="text-xs tracking-[4px] opacity-40 uppercase font-light mt-16 text-right">Antioquia, Medellín.</p>
+
+            <div class="glass-premium p-16 rounded-[80px] border-brand-orange/30">
+                <form class="space-y-10">
+                    <div class="group relative">
+                        <label class="text-[8px] font-bold uppercase tracking-[4px] text-gray-500 group-focus-within:text-brand-orange transition-colors">Nombre de la Compañía</label>
+                        <input type="text" class="w-full bg-transparent border-b border-white/10 py-4 focus:outline-none focus:border-brand-orange transition-all text-xl font-light" placeholder="Ej: Grupo Éxito">
+                    </div>
+                    <div class="group relative">
+                        <label class="text-[8px] font-bold uppercase tracking-[4px] text-gray-500 group-focus-within:text-brand-orange transition-colors">Correo Corporativo</label>
+                        <input type="email" class="w-full bg-transparent border-b border-white/10 py-4 focus:outline-none focus:border-brand-orange transition-all text-xl font-light" placeholder="ceo@empresa.com">
+                    </div>
+                    <div class="group relative">
+                        <label class="text-[8px] font-bold uppercase tracking-[4px] text-gray-500 group-focus-within:text-brand-orange transition-colors">WhatsApp de Contacto</label>
+                        <input type="tel" class="w-full bg-transparent border-b border-white/10 py-4 focus:outline-none focus:border-brand-orange transition-all text-xl font-light" placeholder="+57 000 000 0000">
+                    </div>
+                    <div class="group relative">
+                        <label class="text-[8px] font-bold uppercase tracking-[4px] text-gray-500 group-focus-within:text-brand-orange transition-colors">Desafío Comercial</label>
+                        <textarea rows="3" class="w-full bg-transparent border-b border-white/10 py-4 focus:outline-none focus:border-brand-orange transition-all text-xl font-light" placeholder="Cuéntenos su necesidad..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-brand-orange py-8 rounded-4xl font-black uppercase tracking-[5px] text-xs hover:bg-white hover:text-brand-orange transition-all duration-700 shadow-2xl shadow-brand-orange/20">
+                        Solicitar Auditoría Gratuita
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
-    <footer class="py-24 flex flex-col items-center gap-12 bg-black border-t border-white/5 px-6">
-        <div class="flex flex-col items-center gap-3 text-center opacity-40">
-            <img src="https://via.placeholder.com/150x40/ff6a00/ffffff?text=LOGO" alt="Logo Final" class="h-24 w-auto object-contain mb-2">
-            <p class="font-outfit font-black text-3xl uppercase tracking-tighter neon-glow-orange opacity-70">PROSPEKTA HUB<span class="text-xs align-top">®</span></p>
-            <p class="font-jakarta text-[11px] tracking-[7px] uppercase mt-2 max-w-sm">JYM Association Partners • Operaciones Comerciales Medellín</p>
+    <footer class="footer-mask py-32 px-6 md:px-32 border-t border-white/5">
+        <div class="max-w-screen-2xl mx-auto flex flex-col items-center">
+            <div class="mb-20 text-center">
+                <h4 class="font-outfit font-black text-5xl md:text-9xl uppercase italic tracking-tighter opacity-10 mb-8">PROSPEKTA HUB</h4>
+                <div class="flex justify-center gap-10 text-[9px] font-bold uppercase tracking-[6px] opacity-40">
+                    <span>Instagram</span>
+                    <span>LinkedIn</span>
+                    <span>WhatsApp</span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 w-full border-t border-white/5 pt-20 gap-20">
+                <div class="text-center md:text-left">
+                    <p class="text-brand-orange font-bold text-[10px] tracking-[5px] uppercase mb-6">Ubicación</p>
+                    <p class="text-gray-500 font-light text-sm italic leading-loose">
+                        Carrera 43A #1-50, El Poblado<br>
+                        Medellín, Antioquia, CO
+                    </p>
+                </div>
+                <div class="text-center">
+                    <p class="text-brand-orange font-bold text-[10px] tracking-[5px] uppercase mb-6">Legal</p>
+                    <p class="text-gray-500 font-light text-sm italic leading-loose">
+                        © 2026 Prospekta Hub S.A.S.<br>
+                        NIT: 901.XXX.XXX-X<br>
+                        Habeas Data & Privacidad
+                    </p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-brand-orange font-bold text-[10px] tracking-[5px] uppercase mb-6">Partnership</p>
+                    <p class="text-gray-500 font-light text-sm italic leading-loose">
+                        JYM Association Partners<br>
+                        Global Sales Infrastructure
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-40 text-center">
+                <p class="text-[7px] font-bold tracking-[10px] uppercase opacity-20">Innovation through execution</p>
+            </div>
         </div>
-        
-        <div class="flex gap-8 text-xs font-light uppercase tracking-wider opacity-40 hover:opacity-100 transition-opacity">
-            <a href="#" class="hover:text-ph-accent">Términos</a>
-            <a href="#" class="hover:text-ph-accent">Privacidad</a>
-            <a href="#vacantes" class="hover:text-ph-accent">Trabaja con nosotros</a>
-        </div>
-        
-        <p class="text-center text-[10px] opacity-20 mt-6 tracking-widest font-thin">© 2024 Prospekta Hub. All rights reserved.</p>
     </footer>
 
     <script>
-        // Registrar ScrollTrigger plugin
-        gsap.registerPlugin(ScrollTrigger);
+        // Inicialización de GSAP
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-        // Animación de entrada para el Hero (Inmediata al cargar)
-        gsap.from(".gsap-animate-hero", { opacity: 0, y: 30, duration: 1.2, delay: 0.2, ease: "power3.out" });
-        gsap.from(".gsap-animate-hero-text", { opacity: 0, x: -30, duration: 1, delay: 0.8, ease: "power2.out" });
-
-        // Animaciones al hacer scroll (ScrollTrigger)
-        const commonScrollTrigger = (trigger) => ({
-            trigger: trigger,
-            start: "top 85%", // Empieza cuando el top del elemento entra al 85% del viewport
-            toggleActions: "play none none none" // Solo se reproduce una vez
+        // --- ANIMACIÓN DEL HERO ---
+        const heroTl = gsap.timeline();
+        heroTl.from(".gsap-hero-element", {
+            y: 100,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "expo.out"
         });
 
-        // Títulos de secciones
-        gsap.utils.toArray(".gsap-animate-title").forEach(title => {
-            gsap.from(title, {
-                scrollTrigger: commonScrollTrigger(title),
+        // --- ANIMACIÓN DE NÚMEROS Y ESTADÍSTICAS ---
+        gsap.from(".gsap-vision-image", {
+            scrollTrigger: {
+                trigger: ".gsap-vision-image",
+                start: "top 80%"
+            },
+            x: 100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power4.out"
+        });
+
+        // --- EFECTO DE NAVBAR ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-brand-black/80', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
+                nav.classList.remove('p-8');
+            } else {
+                nav.classList.remove('bg-brand-black/80', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
+                nav.classList.add('p-8');
+            }
+        });
+
+        // --- ANIMACIÓN DE MÉTODOS POR PASOS ---
+        gsap.utils.toArray(".gsap-method").forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%"
+                },
                 opacity: 0,
-                y: 30,
+                x: -50,
                 duration: 1,
+                delay: i * 0.2,
                 ease: "power2.out"
             });
         });
 
-        // Carrusel de Alianzas
-        gsap.from(".gsap-animate-carousel", {
-            scrollTrigger: commonScrollTrigger("#alianzas"),
-            opacity: 0,
-            x: 100,
-            duration: 1.2,
-            ease: "power2.out"
+        // --- LÓGICA DE FORMULARIO ---
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "ENVIANDO DATOS...";
+            btn.classList.add('opacity-50');
+            
+            setTimeout(() => {
+                btn.innerText = "AUDITORÍA SOLICITADA ✓";
+                btn.classList.add('bg-green-600');
+                form.reset();
+            }, 2000);
         });
 
-        // Tarjetas de Vacantes
-        gsap.from(".gsap-animate-cards .glass-dark", {
-            scrollTrigger: commonScrollTrigger("#vacantes"),
-            opacity: 0,
-            y: 40,
-            duration: 0.8,
-            stagger: 0.2, // Retraso entre cada tarjeta
-            ease: "back.out(1.7)"
-        });
-
-        // Elementos de la sección de contacto
-        gsap.from(".gsap-animate-form", {
-            scrollTrigger: commonScrollTrigger("#contacto"),
-            opacity: 0,
-            x: -40,
-            duration: 1,
-            ease: "power2.out"
-        });
-        gsap.from(".gsap-animate-lines", {
-            scrollTrigger: commonScrollTrigger("#contacto"),
-            opacity: 0,
-            x: 40,
-            duration: 1.2,
-            ease: "power3.out"
-        });
+        console.log("PROSPEKTA HUB V2.0 - Engine Started Successfully");
     </script>
 </body>
 </html>
