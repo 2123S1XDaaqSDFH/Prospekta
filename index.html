@@ -1,118 +1,190 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth bg-[#020202]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prospekta Hub | El Poder de Vender</title>
+    <title>PROSPEKTA HUB | Global Sales Architecture</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Bebas+Neue&family=Outfit:wght@100;400;900&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;700&display=swap');
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .font-luxury { font-family: 'Syncopate', sans-serif; }
-        .hero-video { position: relative; overflow: hidden; background: #000; }
-        .overlay { background: rgba(0, 0, 0, 0.6); }
-        .card-hover:hover { transform: translateY(-10px); transition: all 0.3s ease; }
+        :root { --accent: #ff4d00; --bg: #050505; --glass: rgba(255, 255, 255, 0.03); }
+        body { font-family: 'Outfit', sans-serif; background-color: var(--bg); color: white; overflow-x: hidden; }
+        .bebas { font-family: 'Bebas Neue', cursive; letter-spacing: 2px; }
+        
+        /* Efecto de Grano Cinematográfico */
+        .grain::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_filmgrain.png');
+            opacity: 0.04; pointer-events: none; z-index: 9999;
+        }
+
+        /* Glitch y Neón Custom */
+        .glitch-text:hover { text-shadow: 2px 0 #ff4d00, -2px 0 #00ffff; animation: glitch 0.3s infinite; }
+        @keyframes glitch { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); } }
+
+        /* Estructura de "Zara Home" Minimalista */
+        .luxury-border { border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .luxury-border:hover { border-color: var(--accent); background: rgba(255, 77, 0, 0.02); }
+
+        .vertical-text { writing-mode: vertical-rl; text-orientation: mixed; }
     </style>
 </head>
-<body class="bg-white text-gray-900 overflow-x-hidden">
+<body class="grain">
 
-    <div class="fixed bottom-5 left-5 z-50 bg-black/80 p-3 rounded-full flex items-center space-x-3 text-white text-xs border border-white/20">
-        <span class="animate-pulse">● Mood: Zara Chill</span>
-        <audio controls class="h-6 w-32 opacity-50 hover:opacity-100 transition">
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+    <div id="ball" class="fixed w-4 h-4 bg-orange-600 rounded-full pointer-events-none z-[10000] mix-blend-difference transition-transform duration-200"></div>
 
-    <nav class="fixed w-full z-40 p-6 flex justify-between items-center bg-white/10 backdrop-blur-md border-b border-white/10">
-        <div class="text-2xl font-luxury font-bold tracking-tighter text-white">PROSPEKTA<span class="text-orange-500 italic text-3xl">.</span></div>
-        <a href="https://wa.me/573184499437" target="_blank" class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm hover:bg-orange-500 hover:text-white transition-all shadow-xl">CONTACTO DIRECTO</a>
+    <nav class="fixed w-full z-50 p-10 flex justify-between items-end mix-blend-difference">
+        <div>
+            <h1 class="bebas text-4xl leading-none">PROSPEKTA<span class="text-orange-600">.</span></h1>
+            <p class="text-[8px] tracking-[6px] opacity-40 uppercase">Commercial Engineering • 2026</p>
+        </div>
+        <div class="hidden md:flex flex-col items-end space-y-2">
+            <a href="https://wa.me/573184499437" class="text-[10px] font-black tracking-[4px] border-b border-orange-600 pb-1 hover:text-orange-600 transition-all uppercase">Establecer Conexión Directa</a>
+            <span class="text-[8px] opacity-30 italic">Medellín, Colombia</span>
+        </div>
     </nav>
 
-    <header class="hero-video h-screen flex items-center justify-center text-center px-6">
-        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1974" class="absolute inset-0 w-full h-full object-cover opacity-50" alt="Empresa">
-        <div class="absolute inset-0 overlay"></div>
-        <div class="relative z-10 animate__animated animate__fadeInUp">
-            <h1 class="text-5xl md:text-8xl font-luxury font-bold text-white mb-6 leading-tight">VENDEMOS <br><span class="text-orange-500">POR USTED.</span></h1>
-            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light tracking-widest">PROSPECCIÓN DE ÉLITE Y CIERRES ESTRATÉGICOS EN MEDELLÍN.</p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#contacto" class="bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-110 transition-transform shadow-2xl">SOLICITAR DEMO</a>
-            </div>
+    <section class="relative h-screen w-full flex flex-col justify-center px-6 md:px-20 overflow-hidden">
+        <div class="absolute right-0 top-0 h-full w-1/3 border-l border-white/5 flex items-center justify-center opacity-10">
+            <span class="vertical-text bebas text-[15vh] tracking-[50px]">RESULTADOS</span>
         </div>
-    </header>
 
-    <section class="py-12 bg-black flex justify-center border-y border-white/10">
-        <div class="opacity-50 grayscale hover:grayscale-0 transition-all duration-500 px-10">
-             <span class="text-white font-luxury text-xl tracking-[10px]">J&S CALL CENTER</span>
-        </div>
-    </section>
-
-    <section class="py-24 bg-gray-50 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-luxury font-bold mb-16 text-center border-l-4 border-orange-500 pl-4 inline-block">CLIENTES SATISFECHOS</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-3xl shadow-lg card-hover">
-                    <p class="text-gray-600 mb-6 italic">"Increíble. Nos trajeron 15 clientes nuevos en la primera semana. El nivel de prospección es de otro planeta."</p>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600">RA</div>
-                        <div>
-                            <h4 class="font-bold">Ricardo Alzate</h4>
-                            <p class="text-xs text-gray-400">Gerente Automotriz</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-lg card-hover">
-                    <p class="text-gray-600 mb-6 italic">"Teníamos bases de datos muertas y ellos las revivieron todas. Ya recuperamos la inversión del mes."</p>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center font-bold text-orange-600">SM</div>
-                        <div>
-                            <h4 class="font-bold">Sofía Montoya</h4>
-                            <p class="text-xs text-gray-400">Directora Comercial</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white p-8 rounded-3xl shadow-lg card-hover">
-                    <p class="text-gray-600 mb-6 italic">"El mejor aliado en Medellín para agendar citas. No perdemos más tiempo llamando nosotros."</p>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center font-bold text-green-600">JP</div>
-                        <div>
-                            <h4 class="font-bold">Juan Pablo G.</h4>
-                            <p class="text-xs text-gray-400">Inversionista</p>
-                        </div>
-                    </div>
+        <div class="relative z-10">
+            <p class="text-[10px] tracking-[10px] text-orange-600 mb-6 font-bold uppercase animate-pulse">Iniciando Fase de Captación</p>
+            <h2 id="hero-title" class="text-7xl md:text-[180px] font-black leading-[0.8] tracking-tighter mb-12">
+                MENOS<br><span class="text-transparent" style="-webkit-text-stroke: 1px white;">CHARLA.</span><br>MÁS VENTAS.
+            </h2>
+            <div class="max-w-xl border-l-2 border-orange-600 pl-8 space-y-8">
+                <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed">
+                    Ejecutamos la prospección comercial que su infraestructura de diseño y tecnología no puede manejar. Somos el brazo ejecutor de cierres en Medellín.
+                </p>
+                <div class="flex items-center gap-10">
+                    <a href="#contacto" class="bebas text-2xl hover:text-orange-600 transition-all underline underline-offset-8">AGENDAR PERITAJE COMERCIAL</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contacto" class="py-24 bg-white px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-luxury font-bold mb-8">HABLEMOS DE NEGOCIOS.</h2>
-            <p class="mb-12 text-gray-500">Usted diseña, nosotros vendemos. Deje su número y lo contactamos hoy mismo.</p>
-            <div class="bg-black p-1 rounded-3xl shadow-2xl">
-                <div class="bg-white p-10 rounded-[22px]">
-                    <form class="space-y-6 text-left">
-                        <div>
-                            <label class="text-xs font-bold uppercase tracking-widest">Nombre Completo</label>
-                            <input type="text" class="w-full border-b border-gray-300 py-4 focus:outline-none focus:border-orange-500 transition-colors">
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold uppercase tracking-widest">WhatsApp Personal</label>
-                            <input type="tel" class="w-full border-b border-gray-300 py-4 focus:outline-none focus:border-orange-500 transition-colors" value="3184499437">
-                        </div>
-                        <button class="w-full bg-black text-white py-6 rounded-xl font-bold hover:bg-orange-600 transition-all uppercase tracking-[5px]">SOLICITAR ACCESO</button>
-                    </form>
+    <section class="py-40 px-6 md:px-20 border-t border-white/5 bg-[#080808]">
+        <div class="grid md:grid-cols-4 gap-0 luxury-border overflow-hidden">
+            <div class="p-16 border-r border-white/5 luxury-border h-[500px] flex flex-col justify-between group">
+                <span class="text-6xl font-black opacity-5 group-hover:opacity-20 transition-all">01</span>
+                <div>
+                    <h3 class="bebas text-3xl mb-4 italic glitch-text">COLD CALLING</h3>
+                    <p class="text-xs text-gray-500 font-light leading-loose">Guiones de alta conversión diseñados bajo análisis de comportamiento del cliente.</p>
                 </div>
             </div>
-            <div class="mt-12">
-                <a href="tel:3184499437" class="text-2xl font-bold hover:text-orange-500 transition underline">3184499437</a>
+            <div class="p-16 border-r border-white/5 luxury-border h-[500px] flex flex-col justify-between bg-white/[0.01] group">
+                <span class="text-6xl font-black opacity-5 group-hover:opacity-20 transition-all">02</span>
+                <div>
+                    <h3 class="bebas text-3xl mb-4 italic glitch-text">SETTING PRO</h3>
+                    <p class="text-xs text-gray-500 font-light leading-loose">Llenamos su agenda de citas calificadas. Usted solo se encarga de facturar.</p>
+                </div>
+            </div>
+            <div class="p-16 border-r border-white/5 luxury-border h-[500px] flex flex-col justify-between group">
+                <span class="text-6xl font-black opacity-5 group-hover:opacity-20 transition-all">03</span>
+                <div>
+                    <h3 class="bebas text-3xl mb-4 italic glitch-text">BRANDING</h3>
+                    <p class="text-xs text-gray-500 font-light leading-loose">Elevamos la percepción de su marca para que el precio no sea una objeción.</p>
+                </div>
+            </div>
+            <div class="p-16 luxury-border h-[500px] flex flex-col justify-between bg-orange-600 text-black group">
+                <span class="text-6xl font-black opacity-20">04</span>
+                <div>
+                    <h3 class="bebas text-3xl mb-4 italic">CONEXIÓN</h3>
+                    <p class="text-xs font-bold leading-loose">+57 318 449 9437. Su línea directa al crecimiento exponencial.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-10 bg-black text-white/30 text-center text-xs tracking-widest font-luxury uppercase">
-        © 2026 PROSPEKTA HUB | MEDELLÍN | COLOMBIA
-    </footer>
+    <section class="py-40 bg-white text-black px-6 md:px-20">
+        <div class="flex flex-col md:flex-row justify-between items-baseline mb-24 gap-10">
+            <h2 class="bebas text-8xl md:text-[12rem] leading-none tracking-tighter">VOZ DEL<br><span class="text-orange-600">MERCADO.</span></h2>
+            <p class="max-w-xs text-[10px] font-bold tracking-[5px] uppercase opacity-40">Validación real de gerentes en Antioquia.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-px bg-black/10">
+            <div class="bg-white p-20 border border-black/5 hover:bg-gray-50 transition-all">
+                <p class="text-3xl font-light italic mb-12">"Pasamos de bases de datos frías a 15 cierres efectivos en solo 10 días. Brutal."</p>
+                <p class="bebas text-xl">RICARDO ALZATE <span class="text-orange-600 tracking-widest ml-4">// CEO</span></p>
+            </div>
+            <div class="bg-white p-20 border border-black/5 hover:bg-gray-50 transition-all">
+                <p class="text-3xl font-light italic mb-12">"La mejor inversión comercial del 2026. Entienden el mercado de Medellín como nadie."</p>
+                <p class="bebas text-xl">SOFÍA MONTOYA <span class="text-orange-600 tracking-widest ml-4">// DIR</span></p>
+            </div>
+        </div>
+    </section>
 
+    <section id="contacto" class="py-40 bg-[#050505] px-6 text-center">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="bebas text-6xl md:text-9xl mb-20 animate-pulse italic">HABLEMOS DE <span class="text-orange-600 underline">CASH.</span></h3>
+            <form class="grid md:grid-cols-2 gap-12 text-left">
+                <div class="border-b border-white/10 py-4">
+                    <label class="text-[8px] font-black tracking-[5px] uppercase opacity-40">Razón Social</label>
+                    <input type="text" class="w-full bg-transparent outline-none text-2xl font-light py-2">
+                </div>
+                <div class="border-b border-white/10 py-4">
+                    <label class="text-[8px] font-black tracking-[5px] uppercase opacity-40">WhatsApp WhatsApp</label>
+                    <input type="tel" value="3184499437" class="w-full bg-transparent outline-none text-2xl font-light py-2 text-orange-600">
+                </div>
+                <button class="md:col-span-2 bg-white text-black py-8 bebas text-4xl hover:bg-orange-600 hover:text-white transition-all duration-700">SOLICITAR CONSULTA PRIVADA</button>
+            </form>
+            
+            <div class="mt-40 pt-20 border-t border-white/5 flex flex-col md:flex-row justify-between items-center opacity-20 text-[8px] tracking-[10px] uppercase font-bold">
+                <p>PROSPEKTA HUB // SYSTEM V.3.0</p>
+                <p>Medellín, Antioquia</p>
+                <p>Juli & Partner Corp.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed bottom-10 left-10 z-[100] group">
+        <div class="glass p-6 rounded-full border border-white/5 flex items-center gap-6 group-hover:border-orange-600/50 transition-all bg-black/80 backdrop-blur-xl shadow-2xl">
+            <div class="relative w-8 h-8 flex items-center justify-center">
+                <div class="absolute w-full h-full border border-orange-600 rounded-full animate-ping opacity-20"></div>
+                <div class="w-2 h-2 bg-orange-600 rounded-full"></div>
+            </div>
+            <div class="hidden group-hover:block pr-6">
+                <p class="text-[6px] tracking-[5px] font-black text-orange-600 uppercase">Now Streaming</p>
+                <p class="bebas text-sm">ZARA EDIT // CHILL HOUSE 26</p>
+            </div>
+            <audio id="audio" loop>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animación de Cursor Magnético
+        const ball = document.getElementById("ball");
+        document.addEventListener("mousemove", (e) => {
+            gsap.to(ball, { x: e.clientX - 8, y: e.clientY - 8, duration: 0.1 });
+        });
+
+        // Revelaciones de Texto de Peritaje
+        gsap.from("#hero-title", { opacity: 0, x: -100, duration: 2, ease: "expo.out" });
+        
+        gsap.utils.toArray('.luxury-border').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: card,
+                opacity: 0,
+                y: 100,
+                duration: 1.5,
+                ease: "power4.out"
+            });
+        });
+
+        // Click para reproducir música (Browsers exigen interacción)
+        document.body.addEventListener('click', () => {
+            document.getElementById('audio').play();
+        }, { once: true });
+    </script>
 </body>
 </html>
