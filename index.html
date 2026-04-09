@@ -1,1 +1,246 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prospekta Hub | High Performance BPO</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,100..900;1,900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#050505',
+                        brand: '#ff6a00',
+                    },
+                    fontFamily: {
+                        title: ['Outfit', 'sans-serif'],
+                        body: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
+    <style>
+        body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
+        
+        /* Tipografía agresiva solicitada */
+        .title-aggressive { font-family: 'Outfit', sans-serif; font-weight: 900; font-style: italic; }
+        
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Infinite Marquee */
+        .marquee-wrapper {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+            gap: 2rem;
+        }
+        .marquee-content {
+            display: flex;
+            flex-shrink: 0;
+            justify-content: space-around;
+            min-width: 100%;
+            gap: 2rem;
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-100% - 2rem)); }
+        }
+    </style>
+</head>
+<body class="font-body antialiased selection:bg-brand selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-card border-b-0 border-white/10 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <span class="title-aggressive text-2xl tracking-tighter">PROSPEKTA<span class="text-brand">.</span></span>
+            <a href="https://wa.me/573184499437" target="_blank" class="bg-brand text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition-all duration-300 transform hover:scale-105">
+                Únete al Equipo
+            </a>
+        </div>
+    </nav>
+
+    <header class="relative min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/20 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="relative z-10 text-center max-w-4xl mx-auto gsap-reveal">
+            <h1 class="title-aggressive text-6xl md:text-8xl leading-none mb-6 uppercase tracking-tight">
+                Ejecución <br/> <span class="text-brand">Implacable.</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl font-medium mb-10 max-w-2xl mx-auto leading-relaxed">
+                Somos una agencia táctica en Medellín especializada en ventas de alto impacto, retención y fidelización. Cero excusas, puros resultados.
+            </p>
+            <a href="https://wa.me/573184499437" target="_blank" class="inline-block bg-white text-dark px-10 py-4 rounded-[50px] font-bold text-lg hover:bg-brand hover:text-white transition-colors duration-300">
+                Aplica Ahora
+            </a>
+        </div>
+    </header>
+
+    <section class="py-32 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 gsap-reveal">
+                <h2 class="title-aggressive text-4xl md:text-5xl mb-4">NUESTROS <span class="text-brand">ESCUADRONES</span></h2>
+                <p class="text-gray-400">Buscamos talento de alto rendimiento para nuestras líneas clave.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                
+                <div class="glass-card rounded-[50px] p-10 text-center transform transition duration-500 hover:-translate-y-2 gsap-reveal">
+                    <h3 class="title-aggressive text-2xl mb-4">INTÉRPRETE</h3>
+                    <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+                        Domina la comunicación bidireccional. Sé el puente exacto entre clientes y soluciones con precisión milimétrica.
+                    </p>
+                    <span class="block w-full border border-white/20 rounded-[50px] py-3 text-sm font-semibold tracking-wide uppercase">Bilingüe B2/C1</span>
+                </div>
+
+                <div class="glass-card rounded-[50px] p-12 text-center border-2 border-brand shadow-[0_0_30px_rgba(255,106,0,0.15)] transform md:-translate-y-4 transition duration-500 hover:-translate-y-6 relative overflow-hidden gsap-reveal">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-brand"></div>
+                    <div class="bg-brand text-dark text-xs font-black uppercase tracking-widest py-1 px-4 rounded-full inline-block mb-6">Rol Core</div>
+                    <h3 class="title-aggressive text-3xl mb-4">CLOSER</h3>
+                    <p class="text-gray-300 text-sm mb-8 leading-relaxed">
+                        El motor de la agencia. Cierra tratos con psicología táctica, rompe objeciones y maximiza ingresos de forma implacable.
+                    </p>
+                    <a href="https://wa.me/573184499437?text=Hola,%20quiero%20aplicar%20como%20Closer" target="_blank" class="block w-full bg-brand text-white rounded-[50px] py-4 text-sm font-bold tracking-wide uppercase hover:bg-orange-600 transition-colors">
+                        Aplicar como Closer
+                    </a>
+                </div>
+
+                <div class="glass-card rounded-[50px] p-10 text-center transform transition duration-500 hover:-translate-y-2 gsap-reveal">
+                    <h3 class="title-aggressive text-2xl mb-4">ASESOR</h3>
+                    <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+                        Retención y fidelización de clase mundial. Convierte clientes en embajadores a través de un servicio excepcional.
+                    </p>
+                    <span class="block w-full border border-white/20 rounded-[50px] py-3 text-sm font-semibold tracking-wide uppercase">Empatía Táctica</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-gray-100 text-dark overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 text-center mb-16 gsap-reveal">
+            <h2 class="title-aggressive text-4xl md:text-5xl mb-4">NUESTRO <span class="text-brand">IMPACTO</span></h2>
+            <p class="text-gray-600 font-medium">Lo que dicen quienes trabajan con nuestro equipo.</p>
+        </div>
+
+        <div class="marquee-wrapper py-10">
+            <div class="marquee-content">
+                <div class="bg-white rounded-[40px] p-8 min-w-[350px] max-w-[400px] shadow-xl border border-gray-100 flex-shrink-0">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/100?img=33" alt="Cliente" class="w-14 h-14 rounded-full object-cover">
+                        <div class="text-left">
+                            <h4 class="font-bold text-lg">Andrés M.</h4>
+                            <span class="text-brand text-xs font-bold uppercase">Tech Solutions</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Los closers de Prospekta aumentaron nuestras conversiones un 40% en el primer trimestre. Una ejecución impecable."</p>
+                </div>
+                <div class="bg-white rounded-[40px] p-8 min-w-[350px] max-w-[400px] shadow-xl border border-gray-100 flex-shrink-0">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/100?img=47" alt="Cliente" class="w-14 h-14 rounded-full object-cover">
+                        <div class="text-left">
+                            <h4 class="font-bold text-lg">Camila R.</h4>
+                            <span class="text-brand text-xs font-bold uppercase">E-commerce Global</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"El nivel de retención que logran sus asesores nos salvó el LTV este año. Profesionales, rápidos y efectivos."</p>
+                </div>
+                <div class="bg-white rounded-[40px] p-8 min-w-[350px] max-w-[400px] shadow-xl border border-gray-100 flex-shrink-0">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/100?img=11" alt="Cliente" class="w-14 h-14 rounded-full object-cover">
+                        <div class="text-left">
+                            <h4 class="font-bold text-lg">Diego F.</h4>
+                            <span class="text-brand text-xs font-bold uppercase">Logistics Inc.</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Tercerizamos nuestra interpretación telefónica con ellos. La fluidez y resolución de problemas es de clase mundial."</p>
+                </div>
+            </div>
+            
+            <div class="marquee-content" aria-hidden="true">
+                <div class="bg-white rounded-[40px] p-8 min-w-[350px] max-w-[400px] shadow-xl border border-gray-100 flex-shrink-0">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/100?img=33" alt="Cliente" class="w-14 h-14 rounded-full object-cover">
+                        <div class="text-left">
+                            <h4 class="font-bold text-lg">Andrés M.</h4>
+                            <span class="text-brand text-xs font-bold uppercase">Tech Solutions</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Los closers de Prospekta aumentaron nuestras conversiones un 40% en el primer trimestre. Una ejecución impecable."</p>
+                </div>
+                <div class="bg-white rounded-[40px] p-8 min-w-[350px] max-w-[400px] shadow-xl border border-gray-100 flex-shrink-0">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/100?img=47" alt="Cliente" class="w-14 h-14 rounded-full object-cover">
+                        <div class="text-left">
+                            <h4 class="font-bold text-lg">Camila R.</h4>
+                            <span class="text-brand text-xs font-bold uppercase">E-commerce Global</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"El nivel de retención que logran sus asesores nos salvó el LTV este año. Profesionales, rápidos y efectivos."</p>
+                </div>
+                <div class="bg-white rounded-[40px] p-8 min-w-[350px] max-w-[400px] shadow-xl border border-gray-100 flex-shrink-0">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/100?img=11" alt="Cliente" class="w-14 h-14 rounded-full object-cover">
+                        <div class="text-left">
+                            <h4 class="font-bold text-lg">Diego F.</h4>
+                            <span class="text-brand text-xs font-bold uppercase">Logistics Inc.</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Tercerizamos nuestra interpretación telefónica con ellos. La fluidez y resolución de problemas es de clase mundial."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 py-12 px-6 relative z-10 bg-[#050505]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <span class="title-aggressive text-2xl text-gray-500">PROSPEKTA<span class="text-brand">.</span></span>
+            <p class="text-gray-600 text-sm">Medellín, Colombia. High Performance BPO.</p>
+            <a href="https://wa.me/573184499437" target="_blank" class="text-gray-400 hover:text-brand transition-colors font-semibold">
+                Contáctanos
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animación de entrada inicial suave
+        gsap.from("nav", { y: -50, opacity: 0, duration: 1, ease: "power3.out" });
+        gsap.from("header h1", { y: 50, opacity: 0, duration: 1, delay: 0.2, ease: "power3.out" });
+        gsap.from("header p", { y: 30, opacity: 0, duration: 1, delay: 0.4, ease: "power3.out" });
+        gsap.from("header a", { y: 30, opacity: 0, duration: 1, delay: 0.5, ease: "power3.out" });
+
+        // Animación al hacer Scroll (Reveal effect)
+        const revealElements = gsap.utils.toArray('.gsap-reveal');
+        revealElements.forEach((elem) => {
+            gsap.from(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 85%", // Cuando el elemento llega al 85% del viewport
+                    toggleActions: "play none none none"
+                },
+                y: 60,
+                opacity: 0,
+                duration: 1.2,
+                ease: "expo.out"
+            });
+        });
+    </script>
+</body>
+</html>
