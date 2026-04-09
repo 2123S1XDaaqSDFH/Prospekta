@@ -3,149 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROSPEKTA HUB® | JYM Association Partners</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&family=Outfit:wght@100;400;900&display=swap" rel="stylesheet">
+    <title>PROSPEKTA HUB® | Operaciones de Alto Nivel Medellín - JYM Association Partners</title>
     
-    <style>
-        :root { --accent: #ff6a00; --bg: #050505; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: white; overflow-x: hidden; }
-        .font-header { font-family: 'Outfit', sans-serif; }
-        .glass-dark { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .hero-bg { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1596435310012-780c853f5684?q=80&w=2070&auto=format&fit=crop'); 
-            background-size: cover; background-position: center; 
+    <meta name="description" content="Ejecutamos la prospección comercial de alto nivel en Medellín que su infraestructura no puede manejar. Especialistas en cierres de ventas.">
+    <link rel="canonical" href="https://tu-usuario.github.io/tu-repo/"> <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        // Configuración de Tailwind para usar las fuentes cargadas
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ph-accent': '#ff6a00',
+                        'ph-bg-dark': '#050505',
+                        'ph-bg-card': '#0a0a0a',
+                    },
+                    fontFamily: {
+                        'jakarta': ['"Plus Jakarta Sans"', 'sans-serif'],
+                        'outfit': ['Outfit', 'sans-serif'],
+                    },
+                    keyframes: {
+                        // Animación del carrusel infinito (Alianzas)
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }, // Scroll hasta la mitad (donde están los duplicados)
+                        },
+                    },
+                    animation: {
+                        'scroll-infinite': 'scroll 45s linear infinite',
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style type="text/css">
+        /* Estilos CSS globales necesarios no cubiertos por Tailwind */
+        body {
+            background-color: #050505; /* Fallback de color de fondo */
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Clase para aplicar efecto glassmorphism oscuro profesional */
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px); /* Soporte para Safari */
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Configuración para la imagen de fondo del Hero (Medellín) */
+        .hero-bg-img { 
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), 
+                              url('https://images.unsplash.com/photo-1593055357429-62e844060ea8?q=80&w=1920&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center; 
+            background-attachment: fixed; /* Efecto Parallax opcional */
+        }
+
+        /* Configuración para la imagen de fondo de Vacantes (Equipo) */
+        .vacantes-bg-img {
+            background-image: linear-gradient(rgba(5,5,5,0.92), rgba(5,5,5,0.92)), 
+                              url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Estilos específicos para las tarjetas de testimonio dentro del carrusel */
+        .review-card-container {
+            width: 320px;
+            flex-shrink: 0;
+            margin-right: 1.5rem;
+        }
+
+        /* Efecto Glow en texto (Néon) */
+        .neon-glow-orange {
+            color: #ff6a00;
+            text-shadow: 0 0 15px rgba(255, 106, 0, 0.45);
         }
         
-        /* Animación de Reseñas Infinitas */
-        .marquee { display: flex; width: calc(250px * 14); animation: scroll 40s linear infinite; }
-        .marquee:hover { animation-play-state: paused; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-250px * 7)); } }
-        
-        .review-card { width: 350px; flex-shrink: 0; margin-right: 2rem; padding: 2rem; border-radius: 24px; background: white; color: black; transition: 0.5s; }
-        .review-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(255, 106, 0, 0.2); }
-        .neon-orange { color: var(--accent); text-shadow: 0 0 15px rgba(255, 106, 0, 0.6); }
+        /* Ocultar scrollbar para el contenedor del carrusel */
+        .marquee-container {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
+        }
+        .marquee-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
     </style>
 </head>
-<body>
+<body class="font-jakarta antialiased">
 
-    <div class="fixed bottom-10 left-10 z-[100]">
-        <div class="glass-dark p-4 rounded-full flex items-center gap-4 border-orange-600/50 shadow-2xl">
-            <audio id="zaraPlayer" loop>
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
-            </audio>
-            <div class="flex gap-2">
-                <button onclick="document.getElementById('zaraPlayer').play()" class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center text-[8px] font-bold">PLAY</button>
-                <button onclick="document.getElementById('zaraPlayer').pause()" class="w-8 h-8 rounded-full bg-black border border-white/20 text-white flex items-center justify-center text-[8px] font-bold">STOP</button>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="icon-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+        <symbol id="icon-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967c-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.485-.01c-.174 0-.458.066-.697.326c-.24.26-1.103 1.077-1.103 2.629s1.127 3.051 1.282 3.251c.156.202 2.215 3.38 5.368 4.744c.75.324 1.334.518 1.788.662c.753.239 1.438.205 1.98.125c.602-.09 1.758-.719 2.006-1.412c.247-.694.247-1.289.172-1.412c-.074-.123-.274-.199-.571-.349m-5.472 6.164c-2.353 0-4.502-.89-6.26-2.584C3.843 16.147 3.069 13.9 3.069 11.5c0-4.717 3.83-8.551 8.547-8.551s8.546 3.834 8.546 8.551c0 2.355-.889 4.504-2.583 6.261s-3.906 2.583-6.26 2.583m0-18.163a9.61 9.61 0 0 0-9.607 9.612c0 1.983.612 3.9 1.764 5.511L3.02 20.916l3.567-1.129a9.61 9.61 0 0 0 5.02 1.41a9.61 9.61 0 0 0 9.607-9.612a9.61 9.61 0 0 0-9.607-9.612"/></symbol>
+    </svg>
+
+    <nav class="fixed top-0 w-full z-50 bg-ph-bg-dark/80 backdrop-blur-md border-b border-white/5 h-20">
+        <div class="max-w-[1920px] mx-auto h-full px-6 md:px-12 flex justify-between items-center relative">
+            <div class="flex items-center gap-3">
+                <img src="https://via.placeholder.com/150x40/ff6a00/ffffff?text=LOGO" alt="PROSPEKTA Logo" class="h-9 w-auto object-contain">
+                <span class="font-outfit font-black text-2xl tracking-tighter uppercase neon-glow-orange">HUB<span class="text-xs align-top">®</span></span>
             </div>
+            
+            <a href="https://wa.me/573184499437?text=Hola%20Prospekta%20Hub,%20quiero%20más%20información" 
+               target="_blank" rel="noopener"
+               class="bg-ph-accent text-white text-[11px] font-extrabold px-7 py-3 rounded-full tracking-[2.5px] uppercase shadow-lg shadow-ph-accent/10 hover:bg-white hover:text-ph-accent transition-all duration-300">
+                WHATSAPP DIRECTO
+            </a>
         </div>
-    </div>
-
-    <nav class="fixed w-full z-50 p-6 flex justify-between items-center bg-black/60 backdrop-blur-md border-b border-white/5">
-        <div class="flex items-center gap-4">
-            <img src="image_62e723.png.png" alt="PROSPEKTA" class="h-10 w-auto"> 
-            <div class="font-header font-black text-xl tracking-tighter uppercase">PROSPEKTA HUB®</div>
-        </div>
-        <a href="https://wa.me/573184499437" class="bg-orange-600 text-white text-[10px] font-extrabold px-6 py-3 rounded-full tracking-[2px]">WHATSAPP DIRECTO</a>
     </nav>
 
-    <section class="hero-bg h-screen flex flex-col justify-center px-6 md:px-24 pt-20">
-        <div class="max-w-4xl">
-            <h1 class="font-header text-5xl md:text-[100px] font-black leading-none mb-8 tracking-tighter">OPERACIONES DE<br><span class="text-orange-600">ALTO NIVEL.</span></h1>
-            <p class="text-gray-300 text-lg md:text-xl font-light leading-relaxed max-w-2xl border-l-4 border-orange-600 pl-8">
+    <section id="hero" class="hero-bg-img min-h-screen flex flex-col justify-center px-6 md:px-16 pt-28 pb-20 relative">
+        <div class="max-w-[1200px] mx-auto w-full z-10 gsap-animate-hero">
+            <h1 class="font-outfit text-6xl md:text-[100px] lg:text-[120px] font-black leading-[0.9] mb-10 tracking-tighter uppercase italic">
+                OPERACIONES DE<br>
+                <span class="text-ph-accent drop-shadow-[0_0_15px_rgba(255,106,0,0.3)]">ALTO NIVEL.</span>
+            </div>
+            <p class="text-gray-200 text-lg md:text-xl lg:text-2xl font-light leading-relaxed max-w-[750px] border-l-4 border-ph-accent pl-8 ml-2 mt-8 gsap-animate-hero-text">
                 Ejecutamos la prospección comercial que su infraestructura no puede manejar. Somos el brazo ejecutor de cierres en Medellín.
             </p>
         </div>
-    </section>
-
-    <section class="py-32 bg-white overflow-hidden">
-        <h2 class="font-header text-black text-center text-4xl font-black mb-16 uppercase italic">Alianzas de <span class="text-orange-600 underline">Élite.</span></h2>
         
-        <div class="marquee">
-            <div class="review-card">
-                <p class="text-orange-500 font-bold mb-2">SURA</p>
-                <p class="text-sm italic font-light italic">"Eficiencia total en el agendamiento de citas corporativas. Prospekta es otro nivel."</p>
-            </div>
-            <div class="review-card">
-                <p class="text-orange-500 font-bold mb-2">BANCOLOMBIA</p>
-                <p class="text-sm italic font-light italic">"La capacidad de cierre de sus asesores ha superado nuestras métricas trimestrales."</p>
-            </div>
-            <div class="review-card">
-                <p class="text-orange-500 font-bold mb-2">NUTRESA</p>
-                <p class="text-sm italic font-light italic">"Procesos comerciales impecables y una cultura de resultados envidiable."</p>
-            </div>
-            <div class="review-card">
-                <p class="text-orange-500 font-bold mb-2">PROTECCIÓN</p>
-                <p class="text-sm italic font-light italic">"El mejor aliado estratégico para la captación de clientes de alto valor."</p>
-            </div>
-            <div class="review-card">
-                <p class="text-orange-500 font-bold mb-2">ARGOS</p>
-                <p class="text-sm italic font-light italic">"Transparencia y ejecución. Entienden el mercado de Medellín a la perfección."</p>
-            </div>
-            <div class="review-card">
-                <p class="text-orange-500 font-bold mb-2">EPM</p>
-                <p class="text-sm italic font-light italic">"Innovación en telemercadeo que realmente convierte."</p>
-            </div>
-            <div class="review-card">
-                <p class="text-orange-500 font-bold mb-2">SURA</p>
-                <p class="text-sm italic">"Eficiencia total en el agendamiento."</p>
-            </div>
-            <div class="review-card">
-                <p class="text-orange-500 font-bold mb-2">BANCOLOMBIA</p>
-                <p class="text-sm italic">"Métricas trimestrales superadas."</p>
-            </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/40 text-sm tracking-[5px] font-thin uppercase hidden md:block">
+            Scroll down
         </div>
     </section>
 
-    <section class="py-32 px-6 md:px-24 bg-[#0a0a0a]">
-        <h2 class="font-header text-5xl font-black mb-12 text-center uppercase">VACANTES <span class="text-orange-600">DISPONIBLES.</span></h2>
-        <div class="grid md:grid-cols-3 gap-8 text-center">
-            <div class="p-8 glass-dark rounded-3xl border-t-2 border-orange-600">
-                <p class="font-bold">Interprete Bilingüe</p>
-                <p class="text-[10px] opacity-50 mt-2">Inglés C1 / Español</p>
-            </div>
-            <div class="p-8 glass-dark rounded-3xl border-t-2 border-orange-600">
-                <p class="font-bold">Closer de Ventas</p>
-                <p class="text-[10px] opacity-50 mt-2">Nivel Senior / Medellín</p>
-            </div>
-            <div class="p-8 glass-dark rounded-3xl border-t-2 border-orange-600">
-                <p class="font-bold">Asesores Comerciales</p>
-                <p class="text-[10px] opacity-50 mt-2">Bilingüe & Español</p>
-            </div>
+    <section id="alianzas" class="py-32 bg-white overflow-hidden relative">
+        <div class="absolute inset-0 bg-gray-50 opacity-50"></div> <div class="max-w-[1400px] mx-auto px-6 z-10 relative">
+            <h2 class="font-outfit text-ph-bg-dark text-center text-5xl md:text-6xl font-black mb-20 uppercase tracking-tight gsap-animate-title">
+                Alianzas de <span class="text-ph-accent italic underline decoration-ph-accent/30 decoration-4 underline-offset-8">Élite.</span>
+            </h2>
         </div>
-        <p class="text-center mt-12 text-xs tracking-widest opacity-40 uppercase">Envía tu CV al contacto directo.</p>
+        
+        <div class="marquee-container w-full overflow-hidden whitespace-nowrap group">
+            <div class="marquee flex animate-scroll-infinite hover:[animation-play-state:paused] gsap-animate-carousel">
+                
+                <div class="review-card-container">
+                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
+                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Juan Gómez - SURA">
+                            <div>
+                                <p class="text-gray-950 font-extrabold text-lg">Juan Gómez R.</p>
+                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Gerente de Ventas - SURA</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
+                            "Eficiencia total en el agendamiento de citas corporativas. Prospekta es otro nivel de ejecución."
+                        </p>
+                        <img src="https://via.placeholder.com/80x30/dddddd/666666?text=SURA" alt="Logo SURA" class="h-6 w-auto object-contain opacity-70 mt-auto">
+                    </div>
+                </div>
+
+                <div class="review-card-container">
+                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
+                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Carolina Restrepo - Bancolombia">
+                            <div>
+                                <p class="text-gray-950 font-extrabold text-lg">Carolina Restrepo</p>
+                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Senior B2B Closer - BANCOLOMBIA</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
+                            "La capacidad de cierre de sus asesores ha superado nuestras métricas trimestrales de captación."
+                        </p>
+                        <img src="https://via.placeholder.com/120x30/dddddd/666666?text=BANCOLOMBIA" alt="Logo Bancolombia" class="h-6 w-auto object-contain opacity-70 mt-auto">
+                    </div>
+                </div>
+
+                <div class="review-card-container">
+                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
+                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Carlos Martínez - Argos">
+                            <div>
+                                <p class="text-gray-950 font-extrabold text-lg">Carlos Martínez E.</p>
+                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Dir. Expansión Latam - ARGOS</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
+                            "Transparencia y ejecución implacable. Entienden el mercado corporativo a la perfección."
+                        </p>
+                        <img src="https://via.placeholder.com/80x30/dddddd/666666?text=ARGOS" alt="Logo Argos" class="h-6 w-auto object-contain opacity-70 mt-auto">
+                    </div>
+                </div>
+
+                <div class="review-card-container">
+                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
+                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Silvia Valencia - Nutresa">
+                            <div>
+                                <p class="text-gray-950 font-extrabold text-lg">Silvia Valencia P.</p>
+                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Coordinadora Comercial - NUTRESA</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
+                            "Procesos comerciales impecables y una cultura orientada a resultados envidiable."
+                        </p>
+                        <img src="https://via.placeholder.com/100x30/dddddd/666666?text=NUTRESA" alt="Logo Nutresa" class="h-6 w-auto object-contain opacity-70 mt-auto">
+                    </div>
+                </div>
+                <div class="review-card-container">
+                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
+                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Juan Gómez - SURA">
+                            <div>
+                                <p class="text-gray-950 font-extrabold text-lg">Juan Gómez R.</p>
+                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Gerente de Ventas - SURA</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
+                            "Eficiencia total en el agendamiento de citas corporativas. Prospekta es otro nivel de ejecución."
+                        </p>
+                        <img src="https://via.placeholder.com/80x30/dddddd/666666?text=SURA" alt="Logo SURA" class="h-6 w-auto object-contain opacity-70 mt-auto">
+                    </div>
+                </div>
+
+                <div class="review-card-container">
+                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
+                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Carolina Restrepo - Bancolombia">
+                            <div>
+                                <p class="text-gray-950 font-extrabold text-lg">Carolina Restrepo</p>
+                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Senior B2B Closer - BANCOLOMBIA</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
+                            "La capacidad de cierre de sus asesores ha superado nuestras métricas trimestrales de captación."
+                        </p>
+                        <img src="https://via.placeholder.com/120x30/dddddd/666666?text=BANCOLOMBIA" alt="Logo Bancolombia" class="h-6 w-auto object-contain opacity-70 mt-auto">
+                    </div>
+                </div>
+
+                <div class="review-card-container">
+                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
+                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Carlos Martínez - Argos">
+                            <div>
+                                <p class="text-gray-950 font-extrabold text-lg">Carlos Martínez E.</p>
+                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Dir. Expansión Latam - ARGOS</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
+                            "Transparencia y ejecución implacable. Entienden el mercado corporativo a la perfección."
+                        </p>
+                        <img src="https://via.placeholder.com/80x30/dddddd/666666?text=ARGOS" alt="Logo Argos" class="h-6 w-auto object-contain opacity-70 mt-auto">
+                    </div>
+                </div>
+
+                <div class="review-card-container">
+                    <div class="bg-white p-8 rounded-[30px] shadow-[0_10px_60px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full hover:shadow-[0_15px_70px_rgba(255,106,0,0.2)] transition-all duration-500">
+                        <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop" class="w-16 h-16 rounded-2xl object-cover" alt="Silvia Valencia - Nutresa">
+                            <div>
+                                <p class="text-gray-950 font-extrabold text-lg">Silvia Valencia P.</p>
+                                <p class="text-ph-accent font-semibold text-xs tracking-wide">Coordinadora Comercial - NUTRESA</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-800 text-base leading-relaxed font-normal italic pb-4 flex-grow">
+                            "Procesos comerciales impecables y una cultura orientada a resultados envidiable."
+                        </p>
+                        <img src="https://via.placeholder.com/100x30/dddddd/666666?text=NUTRESA" alt="Logo Nutresa" class="h-6 w-auto object-contain opacity-70 mt-auto">
+                    </div>
+                </div>
+                </div>
+        </div>
     </section>
 
-    <section class="py-32 px-6 md:px-24 border-t border-white/5">
-        <div class="grid md:grid-cols-2 gap-20">
-            <div class="space-y-8">
-                <h3 class="font-header text-5xl font-black italic uppercase">Hablemos de <span class="text-orange-600 underline">Negocios.</span></h3>
+    <section id="vacantes" class="vacantes-bg-img py-32 px-6 lg:px-24 border-t border-white/5 relative">
+        <div class="max-w-[1400px] mx-auto z-10 relative">
+            <h2 class="font-outfit text-5xl md:text-6xl font-black mb-16 text-center uppercase tracking-tight gsap-animate-title">
+                VACANTES <span class="text-ph-accent drop-shadow-[0_0_15px_rgba(255,106,0,0.2)]">DISPONIBLES.</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-center gsap-animate-cards">
+                <div class="glass-dark p-10 rounded-[40px] border-t-2 border-ph-accent hover:border-white group hover:scale-[1.03] transition-all duration-500 flex flex-col h-full shadow-xl shadow-black/30">
+                    <p class="font-outfit font-black text-2xl mb-4 group-hover:text-ph-accent">Interprete Bilingüe</p>
+                    <p class="text-gray-200 text-base font-light mb-8 flex-grow">Inglés C1 Avanzado / Español Nativo. Experiencia en interpretación simultánea.</p>
+                    <a href="https://wa.me/573184499437?text=Quiero%20postularme%20como%20Interprete%20Bilingüe" class="inline-block w-full bg-transparent border-2 border-ph-accent text-white py-3 rounded-full text-xs font-bold tracking-widest hover:bg-ph-accent transition-colors duration-300">
+                        POSTULARSE
+                    </a>
+                </div>
+                <div class="glass-dark p-10 rounded-[40px] border-t-2 border-ph-accent hover:border-white group hover:scale-[1.03] transition-all duration-500 flex flex-col h-full shadow-xl shadow-black/30">
+                    <p class="font-outfit font-black text-2xl mb-4 group-hover:text-ph-accent">Closer de Ventas B2B</p>
+                    <p class="text-gray-200 text-base font-light mb-8 flex-grow">Nivel Senior. Especialista en cierres de alto valor. Basado en Medellín.</p>
+                    <a href="https://wa.me/573184499437?text=Quiero%20postularme%20como%20Closer%20de%20Ventas" class="inline-block w-full bg-transparent border-2 border-ph-accent text-white py-3 rounded-full text-xs font-bold tracking-widest hover:bg-ph-accent transition-colors duration-300">
+                        POSTULARSE
+                    </a>
+                </div>
+                <div class="glass-dark p-10 rounded-[40px] border-t-2 border-ph-accent hover:border-white group hover:scale-[1.03] transition-all duration-500 flex flex-col h-full shadow-xl shadow-black/30">
+                    <p class="font-outfit font-black text-2xl mb-4 group-hover:text-ph-accent">Asesores Comerciales</p>
+                    <p class="text-gray-200 text-base font-light mb-8 flex-grow">Bilingüe (Inglés/Español) con fuerte orientación a resultados y captación.</p>
+                    <a href="https://wa.me/573184499437?text=Quiero%20postularme%20como%20Asesor%20Comercial" class="inline-block w-full bg-transparent border-2 border-ph-accent text-white py-3 rounded-full text-xs font-bold tracking-widest hover:bg-ph-accent transition-colors duration-300">
+                        POSTULARSE
+                    </a>
+                </div>
+            </div>
+            
+            <p class="text-center mt-20 text-xs tracking-[6px] opacity-60 uppercase font-light">Envía tu CV al contacto directo.</p>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-32 px-6 lg:px-16 bg-ph-bg-dark border-t border-white/5 relative">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-dotted.png')] opacity-30"></div> <div class="max-w-[1500px] mx-auto grid md:grid-cols-2 gap-20 items-center z-10 relative">
+            
+            <div class="space-y-12 gsap-animate-form">
+                <h3 class="font-outfit text-5xl lg:text-6xl font-black italic uppercase tracking-tighter leading-tight gsap-animate-title">
+                    Hablemos de <br><span class="text-ph-accent underline decoration-ph-accent/30 decoration-4 underline-offset-8 drop-shadow-[0_0_15px_rgba(255,106,0,0.15)]">Negocios.</span>
+                </h3>
+                
                 <div class="space-y-6">
-                    <input type="text" placeholder="Razón Social / Empresa" class="input-style bg-white/5 border border-white/10 p-4 w-full rounded-xl">
-                    <input type="tel" placeholder="WhatsApp del Cliente" class="input-style bg-white/5 border border-white/10 p-4 w-full rounded-xl">
+                    <input type="text" placeholder="Razón Social / Empresa (Opcional)" class="bg-ph-bg-card border border-white/10 p-5 w-full rounded-2xl focus:border-ph-accent/60 outline-none transition-all duration-300 focus:shadow-md focus:shadow-ph-accent/5 text-gray-100 placeholder:text-gray-600">
+                    <input type="tel" placeholder="WhatsApp / Teléfono del Cliente" class="bg-ph-bg-card border border-white/10 p-5 w-full rounded-2xl focus:border-ph-accent/60 outline-none transition-all duration-300 focus:shadow-md focus:shadow-ph-accent/5 text-gray-100 placeholder:text-gray-600">
+                    <button class="w-full bg-ph-accent py-5 rounded-2xl font-black uppercase tracking-[3px] text-xs shadow-lg shadow-ph-accent/20 hover:bg-white hover:text-ph-accent transition-all duration-300 transform hover:translate-y-[-2px]">
+                        SOLICITAR CONSULTORÍA GRATUITA
+                    </button>
                 </div>
             </div>
-            <div class="glass-dark p-12 rounded-[40px] border border-orange-600/30">
-                <h4 class="font-header text-2xl font-black mb-8 neon-orange uppercase tracking-tighter">Líneas de Atención Directa:</h4>
-                <div class="space-y-6 mb-10">
-                    <a href="tel:3184499437" class="text-4xl md:text-5xl font-black hover:text-orange-600 transition block">318 449 9437</a>
-                    <a href="tel:3023974412" class="text-4xl md:text-5xl font-black hover:text-orange-600 transition block">302 397 4412</a>
+            
+            <div class="glass-dark p-12 lg:p-16 rounded-[50px] border border-ph-accent/30 shadow-2xl shadow-black/40 gsap-animate-lines relative overflow-hidden group">
+                <div class="absolute inset-0 bg-ph-accent opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700"></div> <h4 class="font-outfit text-3xl font-black mb-12 neon-glow-orange uppercase tracking-tighter flex items-center gap-3">
+                    <svg class="w-6 h-6 text-ph-accent"><use href="#icon-phone"></use></svg>
+                    Líneas Directas:
+                </h4>
+                
+                <div class="space-y-10 mb-8">
+                    <a href="tel:3184499437" class="group flex items-center gap-6 text-5xl md:text-5xl lg:text-6xl font-black tracking-tight leading-none hover:text-ph-accent transition-colors duration-300 relative">
+                        318 449 9437
+                        <svg class="w-8 h-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 text-ph-accent"><use href="#icon-whatsapp"></use></svg>
+                    </a>
+                    <a href="tel:3023974412" class="group flex items-center gap-6 text-5xl md:text-5xl lg:text-6xl font-black tracking-tight leading-none hover:text-ph-accent transition-colors duration-300 relative">
+                        302 397 4412
+                        <svg class="w-8 h-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 text-ph-accent"><use href="#icon-whatsapp"></use></svg>
+                    </a>
                 </div>
+                <p class="text-xs tracking-[4px] opacity-40 uppercase font-light mt-16 text-right">Antioquia, Medellín.</p>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 flex flex-col items-center gap-8 bg-black">
-        <img src="image_62e723.png.png" alt="Logo Final" class="h-20 w-auto">
-        <div class="text-center opacity-30">
-            <p class="font-header font-black text-2xl uppercase tracking-tighter">PROSPEKTA HUB®</p>
-            <p class="text-[10px] tracking-[6px] uppercase mt-2">JYM Association Partners • Medellín</p>
+    <footer class="py-24 flex flex-col items-center gap-12 bg-black border-t border-white/5 px-6">
+        <div class="flex flex-col items-center gap-3 text-center opacity-40">
+            <img src="https://via.placeholder.com/150x40/ff6a00/ffffff?text=LOGO" alt="Logo Final" class="h-24 w-auto object-contain mb-2">
+            <p class="font-outfit font-black text-3xl uppercase tracking-tighter neon-glow-orange opacity-70">PROSPEKTA HUB<span class="text-xs align-top">®</span></p>
+            <p class="font-jakarta text-[11px] tracking-[7px] uppercase mt-2 max-w-sm">JYM Association Partners • Operaciones Comerciales Medellín</p>
         </div>
+        
+        <div class="flex gap-8 text-xs font-light uppercase tracking-wider opacity-40 hover:opacity-100 transition-opacity">
+            <a href="#" class="hover:text-ph-accent">Términos</a>
+            <a href="#" class="hover:text-ph-accent">Privacidad</a>
+            <a href="#vacantes" class="hover:text-ph-accent">Trabaja con nosotros</a>
+        </div>
+        
+        <p class="text-center text-[10px] opacity-20 mt-6 tracking-widest font-thin">© 2024 Prospekta Hub. All rights reserved.</p>
     </footer>
 
     <script>
-        document.body.addEventListener('click', () => { document.getElementById('zaraPlayer').play(); }, { once: true });
+        // Registrar ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animación de entrada para el Hero (Inmediata al cargar)
+        gsap.from(".gsap-animate-hero", { opacity: 0, y: 30, duration: 1.2, delay: 0.2, ease: "power3.out" });
+        gsap.from(".gsap-animate-hero-text", { opacity: 0, x: -30, duration: 1, delay: 0.8, ease: "power2.out" });
+
+        // Animaciones al hacer scroll (ScrollTrigger)
+        const commonScrollTrigger = (trigger) => ({
+            trigger: trigger,
+            start: "top 85%", // Empieza cuando el top del elemento entra al 85% del viewport
+            toggleActions: "play none none none" // Solo se reproduce una vez
+        });
+
+        // Títulos de secciones
+        gsap.utils.toArray(".gsap-animate-title").forEach(title => {
+            gsap.from(title, {
+                scrollTrigger: commonScrollTrigger(title),
+                opacity: 0,
+                y: 30,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+
+        // Carrusel de Alianzas
+        gsap.from(".gsap-animate-carousel", {
+            scrollTrigger: commonScrollTrigger("#alianzas"),
+            opacity: 0,
+            x: 100,
+            duration: 1.2,
+            ease: "power2.out"
+        });
+
+        // Tarjetas de Vacantes
+        gsap.from(".gsap-animate-cards .glass-dark", {
+            scrollTrigger: commonScrollTrigger("#vacantes"),
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            stagger: 0.2, // Retraso entre cada tarjeta
+            ease: "back.out(1.7)"
+        });
+
+        // Elementos de la sección de contacto
+        gsap.from(".gsap-animate-form", {
+            scrollTrigger: commonScrollTrigger("#contacto"),
+            opacity: 0,
+            x: -40,
+            duration: 1,
+            ease: "power2.out"
+        });
+        gsap.from(".gsap-animate-lines", {
+            scrollTrigger: commonScrollTrigger("#contacto"),
+            opacity: 0,
+            x: 40,
+            duration: 1.2,
+            ease: "power3.out"
+        });
     </script>
 </body>
 </html>
