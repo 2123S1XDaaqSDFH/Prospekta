@@ -5,226 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prospekta Hub | Operaciones Alto Nivel</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { dark: '#050505', brand: '#ff6a00', brandHover: '#e65c00' },
+                    colors: { dark: '#050505', brand: '#ff6a00' },
                     fontFamily: { title: ['Outfit', 'sans-serif'], body: ['"Plus Jakarta Sans"', 'sans-serif'] }
                 }
             }
         }
     </script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        :root { --cursor-size: 8px; }
-        body { background-color: #050505; color: #ffffff; overflow-x: hidden; cursor: none; }
-        
-        /* Tipografías */
+        body { background-color: #050505; color: #ffffff; cursor: default; }
         .title-aggressive { font-family: 'Outfit', sans-serif; font-weight: 900; font-style: italic; }
+        .glass-dark { background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
         
-        /* Utilidades Glass y Glow */
-        .glass-dark { background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        
-        .card-glow { transition: all 0.4s ease; position: relative; overflow: hidden; }
-        .card-glow:hover { transform: translateY(-5px); border-color: rgba(255,106,0,0.3); box-shadow: 0 10px 30px rgba(255,106,0,0.1); }
-
-        /* Custom Cursor */
-        .custom-cursor { position: fixed; top: 0; left: 0; width: var(--cursor-size); height: var(--cursor-size); background: #ff6a00; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s; }
-        .custom-cursor-follower { position: fixed; top: 0; left: 0; width: 30px; height: 30px; border: 1px solid rgba(255, 106, 0, 0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: all 0.1s ease-out; }
-
-        /* Botón WhatsApp Flotante */
-        .wa-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #ff6a00; color: white; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 0px 0px 20px rgba(255, 106, 0, 0.5); z-index: 1000; display: flex; align-items: center; justify-content: center; animation: pulse-orange 2s infinite; }
-        @keyframes pulse-orange {
-            0% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 106, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0); }
-        }
-
-        /* Div contenedor para imagen de fondo (CSS puro para asegurar carga) */
+        /* CORRECCIÓN DE IMAGEN DE FONDO */
         #hero-bg-container {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            background-image: url('MEDELLIN_ATARDECER.jpg');
+            top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            /* Usamos %20 para representar el espacio en el nombre del archivo de tu GitHub */
+            background-image: linear-gradient(to bottom, rgba(5,5,5,0.6), #050505), url('image%20medellin.png'); 
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
         }
-        
-        #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
     </style>
 </head>
-<body class="font-body antialiased selection:bg-brand selection:text-white">
+<body class="antialiased">
 
-    <div class="custom-cursor hidden md:block"></div>
-    <div class="custom-cursor-follower hidden md:block"></div>
-
-    <a href="https://wa.me/573184499437" target="_blank" class="wa-float">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <nav class="fixed w-full z-50 glass-dark py-4" id="navbar">
+    <nav class="fixed w-full z-50 glass-dark py-4">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-2 z-10">
-                <img src="PROSPEKTA.png" alt="Prospekta Hub Logo" class="h-10 w-auto" style="object-fit: contain;">
-                <span class="title-aggressive text-xl tracking-wider uppercase">Prospekta Hub<sup class="text-xs">®</sup></span>
-            </a>
-            <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-300 z-10">
-                <a href="#vacantes" class="hover:text-brand transition-colors">Vacantes</a>
-                <a href="mailto:prospektahub@gmail.com" class="hover:text-brand transition-colors">Enviar CV</a>
+            <div class="flex items-center gap-2">
+                <img src="image_62e723.png.png" alt="Logo" class="h-10 w-auto">
+                <span class="title-aggressive text-xl tracking-wider uppercase">Prospekta Hub</span>
             </div>
-            <a href="https://wa.me/573184499437" target="_blank" class="bg-brand text-white px-6 py-2.5 rounded-full font-bold text-sm tracking-wide uppercase shadow-[0_0_15px_rgba(255,106,0,0.4)] z-10 hover:scale-105 transition-transform">
-                WhatsApp
-            </a>
+            <a href="https://wa.me/573184499437" target="_blank" class="bg-brand text-white px-6 py-2 rounded-full font-bold text-sm uppercase">WhatsApp</a>
         </div>
     </nav>
 
-    <header class="relative min-h-screen flex items-center pt-20 px-6 overflow-hidden">
+    <header class="relative min-h-screen flex items-center px-6 overflow-hidden">
         <div id="hero-bg-container"></div>
-        <div class="absolute top-0 left-0 w-full h-full z-0 bg-gradient-to-b from-dark/70 to-dark/100"></div>
-        
-        <div id="particles-js"></div>
-        
         <div class="max-w-7xl mx-auto w-full relative z-10">
-            <div class="max-w-4xl gsap-hero">
-                <h1 class="title-aggressive text-7xl md:text-8xl lg:text-[110px] leading-[0.85] uppercase tracking-tighter mb-4 text-shadow-lg">
-                    <span class="block text-white">Operaciones</span>
-                    <span class="block text-brand">Alto Nivel.</span>
-                </h1>
-                <div class="flex items-stretch gap-4 mt-8 border-l-4 border-brand pl-6 relative z-10">
-                    <p class="text-gray-100 text-lg md:text-2xl font-medium max-w-2xl leading-relaxed text-shadow">
-                        Infraestructura táctica de ventas y prospección<br/>avanzada en Medellín.
-                    </p>
-                </div>
-                <div class="mt-12 flex flex-wrap gap-4 relative z-20">
-                    <a href="#vacantes" class="bg-white text-dark px-8 py-4 rounded-full font-bold uppercase tracking-wide hover:bg-gray-200 transition-colors">
-                        Postularse Ahora
-                    </a>
-                    <a href="mailto:prospektahub@gmail.com" class="border border-white/40 text-white px-8 py-4 rounded-full font-bold uppercase tracking-wide hover:bg-white/10 transition-colors glass-dark">
-                        Enviar Correo
-                    </a>
-                </div>
-            </div>
+            <h1 class="title-aggressive text-6xl md:text-8xl uppercase leading-none">
+                <span class="block text-white">Operaciones</span>
+                <span class="block text-brand">Alto Nivel.</span>
+            </h1>
+            <p class="text-gray-300 text-lg mt-6 border-l-4 border-brand pl-4 max-w-xl">
+                Infraestructura táctica de ventas y prospección avanzada en Medellín.
+            </p>
         </div>
     </header>
 
-    <section id="vacantes" class="py-24 px-6 bg-[#0a0a0a] relative z-10 border-y border-white/5">
+    <section id="vacantes" class="py-24 px-6 bg-[#050505]">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 gsap-fade-up">
-                <h2 class="title-aggressive text-4xl md:text-5xl mb-4 uppercase">Únete al <span class="text-brand">Hub</span></h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">Haz clic en tu perfil para postularte vía correo o WhatsApp a <span class="text-white">prospektahub@gmail.com</span>.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[380px] border border-white/10 hover:border-white/30 transition-all gsap-fade-up card-glow">
-                    <div>
-                        <h3 class="title-aggressive text-2xl text-white mb-6 uppercase">Inglés C1</h3>
-                        <p class="text-gray-300 text-base leading-relaxed font-medium">
-                            Español nativo. Medellín.<br/>Trabajo presencial.
-                        </p>
-                    </div>
-                    <div class="flex flex-col gap-3 mt-8">
-                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Inglés C1" class="w-full bg-white text-dark font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-envelope"></i> Por Correo
-                        </a>
-                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Inglés%20C1" target="_blank" class="w-full border border-white/10 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-white/5 transition-colors flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp"></i> Por WhatsApp
-                        </a>
+            <h2 class="title-aggressive text-4xl text-center mb-16 uppercase">Únete al <span class="text-brand">Hub</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-dark p-8 rounded-[20px] border border-white/10 flex flex-col justify-between min-h-[300px]">
+                    <h3 class="title-aggressive text-2xl mb-4">INGLÉS C1</h3>
+                    <p class="text-gray-400">Trabajo remoto en Medellín. Español nativo.</p>
+                    <div class="flex flex-col gap-3 mt-6">
+                        <a href="mailto:prospektahub@gmail.com" class="bg-white text-black py-3 rounded-lg font-bold text-center text-xs uppercase">Por Correo</a>
+                        <a href="https://wa.me/573184499437" class="border border-white/20 py-3 rounded-lg font-bold text-center text-xs uppercase">Por WhatsApp</a>
                     </div>
                 </div>
 
-                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[380px] border-2 border-brand shadow-[0_0_30px_rgba(255,106,0,0.2)] gsap-fade-up card-glow relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl z-0"></div>
-                    <div class="relative z-10">
-                        <h3 class="title-aggressive text-3xl text-brand mb-6 uppercase">Senior Closer</h3>
-                        <p class="text-gray-200 text-base leading-relaxed font-semibold">
-                            Especialista en cierres<br/>corporativos High Ticket.
-                        </p>
-                    </div>
-                    <div class="flex flex-col gap-3 mt-8 relative z-10">
-                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Senior Closer" class="w-full bg-brand text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center shadow-[0_0_20px_rgba(255,106,0,0.3)] hover:bg-brandHover transition-colors flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-envelope"></i> Por Correo
-                        </a>
-                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Senior%20Closer" target="_blank" class="w-full border border-brand/30 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-brand/10 transition-colors flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp"></i> Por WhatsApp
-                        </a>
+                <div class="glass-dark p-8 rounded-[20px] border-2 border-brand shadow-[0_0_20px_rgba(255,106,0,0.2)] flex flex-col justify-between min-h-[300px]">
+                    <h3 class="title-aggressive text-2xl mb-4 text-brand">SENIOR CLOSER</h3>
+                    <p class="text-gray-200 font-semibold">Especialista en cierres corporativos High Ticket.</p>
+                    <div class="flex flex-col gap-3 mt-6">
+                        <a href="mailto:prospektahub@gmail.com" class="bg-brand text-white py-3 rounded-lg font-bold text-center text-xs uppercase">Por Correo</a>
+                        <a href="https://wa.me/573184499437" class="border border-brand/40 py-3 rounded-lg font-bold text-center text-xs uppercase">Por WhatsApp</a>
                     </div>
                 </div>
 
-                <div class="glass-dark rounded-[30px] p-10 flex flex-col justify-between min-h-[380px] border border-white/10 hover:border-white/30 transition-all gsap-fade-up card-glow">
-                    <div>
-                        <h3 class="title-aggressive text-2xl text-white mb-6 uppercase">Bilingüe Ops</h3>
-                        <p class="text-gray-300 text-base leading-relaxed font-medium">
-                            Español nativo. High<br/>Performance Ops Medellín.
-                        </p>
-                    </div>
-                    <div class="flex flex-col gap-3 mt-8">
-                        <a href="mailto:prospektahub@gmail.com?subject=Postulación: Bilingüe Ops" class="w-full bg-white text-dark font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-envelope"></i> Por Correo
-                        </a>
-                        <a href="https://wa.me/573184499437?text=Hola,%20me%20postulo%20a%20la%20vacante%20Bilingüe%20Ops" target="_blank" class="w-full border border-white/10 text-white font-bold text-xs tracking-widest uppercase py-4 rounded-xl text-center hover:bg-white/5 transition-colors flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp"></i> Por WhatsApp
-                        </a>
+                <div class="glass-dark p-8 rounded-[20px] border border-white/10 flex flex-col justify-between min-h-[300px]">
+                    <h3 class="title-aggressive text-2xl mb-4">BILINGÜE OPS</h3>
+                    <p class="text-gray-400">High Performance Ops Medellín. Español nativo.</p>
+                    <div class="flex flex-col gap-3 mt-6">
+                        <a href="mailto:prospektahub@gmail.com" class="bg-white text-black py-3 rounded-lg font-bold text-center text-xs uppercase">Por Correo</a>
+                        <a href="https://wa.me/573184499437" class="border border-white/20 py-3 rounded-lg font-bold text-center text-xs uppercase">Por WhatsApp</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 px-6 relative z-10 bg-[#020202] flex flex-col items-center justify-center border-t border-white/5">
-        <img src="PROSPEKTA.png" alt="Prospekta Hub Logo" class="h-16 w-auto mb-8 opacity-70 hover:opacity-100 transition-opacity" style="object-fit: contain;">
-        <h2 class="title-aggressive text-4xl md:text-5xl text-center mb-8 uppercase italic">
-            REVOLUCIONANDO LA PROSPECCIÓN<br/>
-            <span class="text-white">DESDE <span class="text-brand">MEDELLÍN.</span></span>
-        </h2>
-        <div class="flex gap-6 mb-10 relative z-20">
-            <a href="https://wa.me/573184499437" target="_blank" class="text-gray-400 hover:text-brand text-2xl transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="mailto:prospektahub@gmail.com" class="text-gray-400 hover:text-brand text-2xl transition-colors"><i class="fa-solid fa-envelope"></i></a>
-        </div>
-        <p class="text-[10px] tracking-[0.3em] text-gray-600 font-bold uppercase text-center">
-            © 2026 PROSPEKTA HUB S.A.S. • TODOS LOS DERECHOS RESERVADOS
-        </p>
+    <footer class="py-20 flex flex-col items-center bg-black border-t border-white/5">
+        <img src="image_62e723.png.png" alt="Logo" class="h-12 mb-6 opacity-50">
+        <p class="text-[10px] tracking-[0.3em] text-gray-600 uppercase">© 2026 PROSPEKTA HUB S.A.S.</p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        const cursor = document.querySelector('.custom-cursor');
-        const cursorFollower = document.querySelector('.custom-cursor-follower');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-            setTimeout(() => { cursorFollower.style.left = e.clientX + 'px'; cursorFollower.style.top = e.clientY + 'px'; }, 80);
-        });
-
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.from(".gsap-hero", { y: 50, opacity: 0, duration: 1.2, ease: "power4.out" });
-        gsap.utils.toArray('.gsap-fade-up').forEach(el => {
-            gsap.from(el, { scrollTrigger: { trigger: el, start: "top 90%" }, y: 40, opacity: 0, duration: 1 });
-        });
-
-        // Configuración de Particles JS (z-index 1, sobre el fondo y bajo el texto)
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 40 },
-                "color": { "value": "#ff6a00" },
-                "opacity": { "value": 0.3 },
-                "size": { "value": 2 },
-                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.1 },
-                "move": { "enable": true, "speed": 1 }
-            }
-        });
-    </script>
 </body>
 </html>
