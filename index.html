@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,125 +10,131 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=Outfit:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;800&family=Outfit:wght@900&display=swap" rel="stylesheet">
     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'ph-orange': '#ff6a00', 'ph-dark': '#050505' },
+                    fontFamily: { 'jakarta': ['"Plus Jakarta Sans"'], 'outfit': ['Outfit'] }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root { --ph-orange: #ff6a00; --ph-dark: #050505; }
-        body { background-color: var(--ph-dark); color: white; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        
-        /* ESTILO MATERIAL UI MODERNO */
-        .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,1)), url('image medellin.png');
+        body { background-color: #050505; color: #fff; font-family: 'Plus Jakarta Sans'; overflow-x: hidden; }
+        .hero-visual {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,1)), url('image medellin.png');
             background-size: cover; background-position: center; background-attachment: fixed;
         }
-
-        .mui-card {
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 40px; transition: all 0.3s ease;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05); transition: border 0.3s;
         }
-        .mui-card:hover { border-color: var(--ph-orange); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-
-        /* FIX DE RESPONSIVE Y CONTRASTE (PARA BRYAN) */
-        .text-hero { font-family: 'Outfit'; font-size: clamp(3rem, 14vw, 8rem); line-height: 0.85; font-style: italic; text-transform: uppercase; }
-        .text-readable { color: #e5e7eb !important; } /* Gris clarito, nada de opacidad exagerada */
-        
-        /* MARQUEE INFINITO */
-        .infinite-scroll { display: flex; width: max-content; animation: scroll-fast 35s linear infinite; }
-        @keyframes scroll-fast { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        .btn-ph { background: var(--ph-orange); color: white; border-radius: 50px; font-weight: 800; letter-spacing: 2px; font-size: 10px; transition: 0.3s; }
-        .btn-ph:hover { background: white; color: var(--ph-orange); transform: scale(1.05); }
+        .glass-card:hover { border-color: #ff6a00; }
+        .portrait-img { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; }
+        .infinite-scroll { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     </style>
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full z-[100] px-4 md:px-10 py-5 flex justify-between items-center bg-black/80 backdrop-blur-lg border-b border-white/5">
-        <div class="flex items-center gap-2">
-            <img src="image_62e723.png.png" class="h-6 md:h-9">
-            <span class="font-['Outfit'] font-black text-xl uppercase italic tracking-tighter">PROSPEKTA HUB®</span>
+    <nav class="fixed top-0 w-full z-[100] p-6 flex justify-between items-center bg-black/50 backdrop-blur-lg">
+        <div class="flex items-center gap-3">
+            <img src="image_62e723.png.png" class="h-8">
+            <span class="font-outfit font-black text-xl uppercase italic">PROSPEKTA HUB®</span>
         </div>
-        <a href="https://wa.me/573184499437" class="btn-ph px-6 py-3">WHATSAPP</a>
+        <a href="https://wa.me/573184499437" class="bg-ph-orange px-6 py-2 rounded-full font-bold text-[10px] tracking-widest uppercase">WhatsApp Directo</a>
     </nav>
 
-    <section class="hero-bg min-h-screen flex items-center px-6 md:px-24 pt-24">
-        <div class="reveal-fast">
-            <h1 class="text-hero font-black">OPERACIONES <br> <span class="text-[#ff6a00]">ALTO NIVEL.</span></h1>
-            <p class="mt-8 text-readable max-w-xl text-lg md:text-2xl font-light border-l-4 border-[#ff6a00] pl-6">
+    <section class="hero-visual h-screen flex items-center px-6 md:px-24">
+        <div class="reveal-hero">
+            <h1 class="font-outfit text-6xl md:text-[120px] font-black leading-none uppercase italic">
+                OPERACIONES <br> <span class="text-ph-orange">ALTO NIVEL.</span>
+            </h1>
+            <p class="mt-8 text-gray-400 max-w-xl text-lg border-l-2 border-ph-orange pl-6">
                 Infraestructura táctica de ventas y prospección avanzada en Medellín.
             </p>
         </div>
     </section>
 
-    <section class="py-24 bg-white text-black overflow-hidden">
-        <h2 class="text-center font-['Outfit'] text-4xl md:text-6xl font-black uppercase italic mb-16 reveal-fast">Alianzas de <span class="text-[#ff6a00]">Élite.</span></h2>
+    <section class="py-32 bg-white text-black relative overflow-hidden">
+        <h2 class="text-center font-outfit text-5xl font-black uppercase italic mb-20 scroll-reveal-title">Marcas que <span class="text-ph-orange">Confían.</span></h2>
         <div class="infinite-scroll">
             <div class="flex gap-8 px-4">
-                <div class="w-[320px] md:w-[450px] p-10 bg-gray-50 rounded-[40px] shadow-xl border border-gray-100 flex flex-col justify-between h-[320px]">
-                    <p class="text-xl md:text-2xl font-bold italic text-gray-800">"El bilingüismo y la capacidad de cierre de sus asesores es incomparable."</p>
-                    <div class="flex items-center gap-4 mt-6">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2" class="w-14 h-14 rounded-xl object-cover border-2 border-[#ff6a00]">
-                        <div><p class="font-black text-lg leading-none">Carolina Velez</p><p class="text-[#ff6a00] text-[9px] font-black uppercase">Gerente - SURA</p></div>
+                <div class="w-[400px] p-10 bg-gray-50 rounded-[40px] shadow-xl border border-gray-100">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" class="portrait-img">
+                        <div><p class="font-black text-lg">Juan Gómez</p><p class="text-ph-orange text-xs font-bold uppercase">SURA</p></div>
                     </div>
+                    <p class="italic text-gray-600">"Eficiencia total en el agendamiento y pasión por el cierre."</p>
                 </div>
-                <div class="w-[320px] md:w-[450px] p-10 bg-gray-100 rounded-[40px] shadow-xl flex flex-col justify-between h-[320px]">
-                    <p class="text-xl md:text-2xl font-bold italic text-gray-800">"Transparencia y ejecución implacable en todo Medellín."</p>
-                    <div class="flex items-center gap-4 mt-6">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" class="w-14 h-14 rounded-xl object-cover border-2 border-[#ff6a00]">
-                        <div><p class="font-black text-lg leading-none">Juan Gómez</p><p class="text-[#ff6a00] text-[9px] font-black uppercase">Director - ARGOS</p></div>
+                <div class="w-[400px] p-10 bg-gray-50 rounded-[40px] shadow-xl border border-gray-100">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2" class="portrait-img">
+                        <div><p class="font-black text-lg">Carolina Velez</p><p class="text-ph-orange text-xs font-bold uppercase">Bancolombia</p></div>
                     </div>
+                    <p class="italic text-gray-600">"Métricas trimestrales superadas gracias a su nivel de bilingüismo."</p>
                 </div>
+                <div class="w-[400px] p-10 bg-gray-50 rounded-[40px] shadow-xl">...</div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 px-6 md:px-24 bg-black">
-        <h2 class="font-['Outfit'] text-4xl md:text-7xl font-black italic mb-16 reveal-fast">VACANTES <br><span class="text-[#ff6a00]">DISPONIBLES.</span></h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="mui-card p-12 reveal-fast">
-                <span class="text-[#ff6a00] font-black text-xs tracking-widest uppercase">01 / Tech</span>
-                <h3 class="text-3xl font-black mt-4 mb-4 italic">Interprete <br>Bilingüe</h3>
-                <p class="text-readable text-sm mb-10">Inglés C1 / Español. Medellín. Trabajo presencial.</p>
-                <button class="w-full py-4 btn-ph">APLICAR</button>
+    <section class="py-32 bg-ph-dark px-6 md:px-24">
+        <h2 class="font-outfit text-5xl font-black uppercase italic mb-16 scroll-reveal-title">Vacantes <span class="text-ph-orange">Disponibles.</span></h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-card p-12 rounded-[50px] scroll-card">
+                <h4 class="text-2xl font-black mb-4">Interprete Bilingüe</h4>
+                <p class="text-gray-500 text-sm mb-8">Inglés C1 / Español. Medellín.</p>
+                <a href="https://wa.me/573184499437" class="text-ph-orange font-bold text-xs tracking-widest uppercase">Aplicar →</a>
             </div>
-            
-            <div class="mui-card p-12 border-[#ff6a00]/30 reveal-fast">
-                <span class="text-[#ff6a00] font-black text-xs tracking-widest uppercase">02 / Senior</span>
-                <h3 class="text-3xl font-black mt-4 mb-4 italic text-[#ff6a00]">Closer de <br>Ventas</h3>
-                <p class="text-readable text-sm mb-10">Nivel Senior. Especialista en cierres High Ticket.</p>
-                <button class="w-full py-4 btn-ph">APLICAR AHORA</button>
+            <div class="glass-card p-12 rounded-[50px] scroll-card border-ph-orange/40">
+                <h4 class="text-2xl font-black mb-4">Closer de Ventas</h4>
+                <p class="text-gray-500 text-sm mb-8">Nivel Senior / Medellín.</p>
+                <a href="https://wa.me/573184499437" class="text-ph-orange font-bold text-xs tracking-widest uppercase">Aplicar →</a>
             </div>
-
-            <div class="mui-card p-12 reveal-fast">
-                <span class="text-[#ff6a00] font-black text-xs tracking-widest uppercase">03 / Ventas</span>
-                <h3 class="text-3xl font-black mt-4 mb-4 italic">Asesores <br>Comerciales</h3>
-                <p class="text-readable text-sm mb-10">Bilingüe & Español. High Performance Ops.</p>
-                <button class="w-full py-4 btn-ph">APLICAR</button>
+            <div class="glass-card p-12 rounded-[50px] scroll-card">
+                <h4 class="text-2xl font-black mb-4">Asesores Comerciales</h4>
+                <p class="text-gray-500 text-sm mb-8">Bilingüe & Español.</p>
+                <a href="https://wa.me/573184499437" class="text-ph-orange font-bold text-xs tracking-widest uppercase">Aplicar →</a>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 border-t border-white/5 text-center bg-black">
-        <img src="image_62e723.png.png" class="h-9 mx-auto mb-6 opacity-60">
-        <p class="text-[10px] tracking-[8px] uppercase opacity-30">© 2026 PROSPEKTA HUB S.A.S. • MEDELLÍN</p>
+    <footer class="py-20 border-t border-white/5 px-6 text-center">
+        <img src="image_62e723.png.png" class="h-10 mx-auto mb-6 opacity-50">
+        <p class="text-[10px] tracking-[5px] uppercase opacity-30">PROSPEKTA HUB S.A.S. • 2026 Medellín</p>
     </footer>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // ANIMACIONES INSTANTÁNEAS (Lo que pidió Bryan)
-        gsap.utils.toArray(".reveal-fast").forEach(el => {
-            gsap.from(el, {
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 92%", // Aparece apenas entra a la vista
-                    toggleActions: "play none none none"
-                },
-                opacity: 0,
-                y: 30,
-                duration: 0.6,
-                ease: "power2.out"
+        // 1. Animación Hero al cargar
+        gsap.from(".reveal-hero", { opacity: 0, y: 100, duration: 1.5, ease: "expo.out" });
+
+        // 2. Animación de Títulos (Aparecen al bajar y se desvanecen sutilmente al subir)
+        gsap.utils.toArray(".scroll-reveal-title").forEach(title => {
+            gsap.from(title, {
+                scrollTrigger: { trigger: title, start: "top 90%", toggleActions: "play reverse play reverse" },
+                opacity: 0, scale: 0.8, y: 50, duration: 1, ease: "back.out(1.7)"
             });
+        });
+
+        // 3. Animación de Tarjetas (Efecto de cascada y rotación 3D sutil)
+        gsap.utils.toArray(".scroll-card").forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: { trigger: card, start: "top 85%", toggleActions: "play reverse play reverse" },
+                opacity: 0, x: i % 2 === 0 ? -50 : 50, rotation: i % 2 === 0 ? -5 : 5, duration: 1, ease: "power4.out"
+            });
+        });
+
+        // 4. Parallax sutil en el fondo del Hero
+        gsap.to(".hero-visual", {
+            scrollTrigger: { trigger: ".hero-visual", start: "top top", end: "bottom top", scrub: true },
+            backgroundPositionY: "20%"
         });
     </script>
 </body>
